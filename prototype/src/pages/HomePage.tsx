@@ -66,46 +66,35 @@ export function HomePage() {
     <div className="page-stack">
       <section className="hero-section home-hero">
         <div className="hero-copy">
-          <SectionLabel>문화 접근성 향상</SectionLabel>
+          <SectionLabel>CULTURE KEEPER</SectionLabel>
           <h1>
-            <span className="accent-text">빈 공간</span>은{" "}
-            <span className="accent-text">청년의 창작 거점</span>이 되고,
-            <br />
-            주민의 일상은{" "}
-            <span className="accent-text">문화와 가까워집니다</span>.
+            컬처키퍼
           </h1>
+          <div className="hero-main-message">
+            청년의 창작으로 빈 공간을 <span>돌보고</span>,
+            <br />
+            주민의 일상에 문화를 <span>더합니다</span>.
+          </div>
           <p>
-            청년 창작자가 빈 상가를 조건부 저비용으로 사용하고,
+            빈 공간은 청년의 창작 거점이 되고,
             <br />
-            월 1회 문화 프로그램을 운영해 주민들의{" "}
-            <span className="inline-accent">문화 접근성</span>을 높이는
-            <br />
-            지역 순환형 공간 플랫폼입니다.
+            주민의 일상은 문화와 가까워집니다.
           </p>
           <div className="hero-actions">
             <Link className="button button-primary" to="/spaces">
-              공간 찾기
+              서비스 구조 보기
+              <span aria-hidden="true">→</span>
             </Link>
             <Link className="button button-secondary" to="/programs">
-              프로그램 보기
+              소개 영상 보기
             </Link>
           </div>
         </div>
 
-        <aside className="hero-panel" aria-label="서비스 구조 요약">
-          <span className="hero-panel-kicker">Core Model</span>
-          <div className="hero-panel-row">
-            <strong>빈 상가</strong>
-            <span>조건부 저비용 공간</span>
-          </div>
-          <div className="hero-panel-row">
-            <strong>청년 창작자</strong>
-            <span>관리 + 월 1회 프로그램</span>
-          </div>
-          <div className="hero-panel-row">
-            <strong>지역 주민</strong>
-            <span>생활권 문화 참여</span>
-          </div>
+        <aside className="hero-visual" aria-label="공간에 빛이 들어오는 추상 이미지">
+          <span className="visual-door" />
+          <span className="visual-light" />
+          <span className="visual-shadow" />
         </aside>
       </section>
 

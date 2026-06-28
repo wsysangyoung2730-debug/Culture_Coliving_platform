@@ -12,6 +12,7 @@ export function PlaceholderImage({
   return (
     <div className={`placeholder-image placeholder-${variant} ${className}`}>
       <span className="placeholder-dot" />
+      <span className="placeholder-frame" aria-hidden="true" />
       <span className="placeholder-label">{label}</span>
     </div>
   );
