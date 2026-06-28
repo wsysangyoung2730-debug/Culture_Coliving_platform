@@ -1107,6 +1107,142 @@ select {
   color: var(--color-muted);
 }
 
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.archive-board-card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+.archive-card-body {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.archive-card-body h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.2rem;
+}
+
+.archive-card-body p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.archive-open-button {
+  width: 100%;
+}
+
+.archive-detail-modal {
+  width: min(100%, 980px);
+}
+
+.archive-detail-layout {
+  display: grid;
+  grid-template-columns: 22rem minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.archive-detail-media .placeholder-image {
+  min-height: 25rem;
+}
+
+.archive-detail-content {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.comment-section {
+  display: grid;
+  gap: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.25rem;
+}
+
+.comment-section h3 {
+  margin: 0;
+}
+
+.comment-empty {
+  margin: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+  color: var(--color-muted);
+  background: rgba(245, 240, 232, 0.03);
+}
+
+.comment-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.comment-list li {
+  display: grid;
+  gap: 0.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.9rem;
+  background: rgba(245, 240, 232, 0.03);
+}
+
+.comment-list span {
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.comment-list p {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.comment-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.comment-form label {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--color-text);
+  font-weight: 800;
+}
+
+.comment-form textarea {
+  width: 100%;
+  min-height: 6.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.85rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  resize: vertical;
+}
+
+.comment-form textarea:focus {
+  border-color: rgba(255, 77, 87, 0.65);
+  outline: none;
+}
+
+.form-success {
+  margin: 0;
+  color: var(--color-text);
+  font-weight: 900;
+}
+
 @keyframes poster-scroll {
   from {
     transform: translateX(0);
@@ -1257,7 +1393,8 @@ select {
   .solution-steps,
   .metric-grid,
   .spaces-card-list,
-  .program-grid {
+  .program-grid,
+  .archive-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1279,6 +1416,10 @@ select {
   }
 
   .program-payment-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-detail-layout {
     grid-template-columns: 1fr;
   }
 
@@ -1315,7 +1456,8 @@ select {
   .spaces-card-list,
   .application-form,
   .program-grid,
-  .segmented-control {
+  .segmented-control,
+  .archive-grid {
     grid-template-columns: 1fr;
   }
 
