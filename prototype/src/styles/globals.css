@@ -827,6 +827,296 @@ select {
   padding: 1.5rem 0.5rem 0.5rem;
 }
 
+.program-slider-section {
+  display: grid;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.poster-marquee {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+.poster-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  padding: 1rem;
+  animation: poster-scroll 34s linear infinite;
+}
+
+.poster-marquee:hover .poster-track {
+  animation-play-state: paused;
+}
+
+.program-poster {
+  display: grid;
+  width: 17rem;
+  min-height: 23rem;
+  align-content: space-between;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.1rem;
+  background:
+    linear-gradient(160deg, rgba(255, 77, 87, 0.18), transparent 38%),
+    var(--color-surface-soft);
+}
+
+.poster-category {
+  width: fit-content;
+  border: 1px solid rgba(255, 77, 87, 0.45);
+  border-radius: 999px;
+  padding: 0.32rem 0.55rem;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.program-poster h3 {
+  margin: 2rem 0 0;
+  color: var(--color-text);
+  font-size: 1.65rem;
+  line-height: 1.18;
+}
+
+.program-poster p {
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+}
+
+.poster-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.program-poster strong {
+  color: var(--color-text);
+  font-size: 1.2rem;
+}
+
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.program-card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+.program-card-body {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.program-card h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.2rem;
+}
+
+.program-card p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.program-price-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+}
+
+.program-price-row div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.program-price-row strong {
+  color: var(--color-text);
+  font-size: 1.25rem;
+}
+
+.original-price {
+  display: block;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  text-decoration: line-through;
+}
+
+.discount-badge {
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 77, 87, 0.45);
+  border-radius: 999px;
+  padding: 0.35rem 0.55rem;
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.program-apply-button {
+  width: 100%;
+}
+
+.program-modal {
+  width: min(100%, 980px);
+}
+
+.program-payment-layout {
+  display: grid;
+  grid-template-columns: 20rem minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.price-summary {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  display: grid;
+  gap: 1rem;
+  border: 1px solid rgba(255, 77, 87, 0.34);
+  border-radius: 8px;
+  padding: 1rem;
+  background: rgba(255, 77, 87, 0.08);
+}
+
+.price-summary h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.price-summary dl {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+}
+
+.price-summary div {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.price-summary dt {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.price-summary dd {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.price-summary dd strong {
+  font-size: 1.05rem;
+}
+
+.price-summary dd span:not(.original-price) {
+  color: var(--color-muted);
+  font-size: 0.86rem;
+}
+
+.summary-total {
+  border-top: 1px solid rgba(255, 77, 87, 0.36);
+  padding-top: 0.9rem;
+}
+
+.summary-total dd {
+  color: var(--color-accent);
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.program-application-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.program-application-form label {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--color-text);
+  font-weight: 800;
+}
+
+.program-application-form input,
+.program-application-form textarea {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.85rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.program-application-form textarea {
+  min-height: 6.5rem;
+  resize: vertical;
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8rem;
+}
+
+.segmented-control legend {
+  padding: 0 0.3rem;
+  color: var(--color-accent);
+  font-weight: 900;
+}
+
+.segmented-control button {
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.75rem;
+  color: var(--color-muted);
+  background: rgba(245, 240, 232, 0.03);
+  cursor: pointer;
+}
+
+.segmented-control .segment-active {
+  border-color: rgba(255, 77, 87, 0.52);
+  color: var(--color-text);
+  background: rgba(255, 77, 87, 0.13);
+}
+
+.agreement-list p {
+  margin: 0 0 0.5rem;
+  color: var(--color-muted);
+}
+
+@keyframes poster-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
 .card-body {
   display: grid;
   gap: 1rem;
@@ -966,7 +1256,8 @@ select {
   .problem-grid,
   .solution-steps,
   .metric-grid,
-  .spaces-card-list {
+  .spaces-card-list,
+  .program-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -987,7 +1278,15 @@ select {
     grid-template-columns: 1fr;
   }
 
+  .program-payment-layout {
+    grid-template-columns: 1fr;
+  }
+
   .space-detail-panel {
+    position: static;
+  }
+
+  .price-summary {
     position: static;
   }
 }
@@ -1014,7 +1313,9 @@ select {
   .metric-grid,
   .circulation-flow,
   .spaces-card-list,
-  .application-form {
+  .application-form,
+  .program-grid,
+  .segmented-control {
     grid-template-columns: 1fr;
   }
 

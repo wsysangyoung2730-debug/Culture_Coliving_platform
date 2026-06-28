@@ -1,66 +1,61 @@
-import { PlaceholderImage } from "../components/common/PlaceholderImage";
+import { useState } from "react";
 import { SectionLabel } from "../components/common/SectionLabel";
+import { ProgramApplicationModal } from "../components/programs/ProgramApplicationModal";
+import { ProgramCard } from "../components/programs/ProgramCard";
+import { ProgramPosterSlider } from "../components/programs/ProgramPosterSlider";
 import { programs } from "../data/programs";
+import type { Program } from "../data/programs";
 
-const priceFormatter = new Intl.NumberFormat("ko-KR");
+const categoryChips = ["공연", "클래스", "세미나", "체험 부스"];
 
 export function ProgramsPage() {
+  const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
+
   return (
     <div className="page-stack">
       <section className="page-intro">
         <SectionLabel>주민 문화 접근</SectionLabel>
         <h1>프로그램</h1>
         <p>
-          가까운 동네 공간에서 열리는 공연, 클래스, 세미나, 체험 부스를
-          주민 할인가로 탐색합니다.
+          동네 가까이에서 열리는 공연, 클래스, 세미나, 체험 프로그램을 확인하고
+          신청할 수 있습니다.
         </p>
-      </section>
-
-      <section className="poster-placeholder" aria-label="포스터 슬라이드 영역">
-        <span>포스터 슬라이드 구현 예정</span>
-        <p>6개의 프로그램 포스터가 오른쪽에서 왼쪽으로 흐릅니다.</p>
-      </section>
-
-      <section className="content-section">
-        <div className="section-heading">
-          <SectionLabel>프로그램 미리보기</SectionLabel>
-          <h2>이번 달 지역 프로그램</h2>
-        </div>
-        <div className="card-grid">
-          {programs.map((program) => (
-            <article className="data-card" key={program.id}>
-              <PlaceholderImage label={program.posterText} variant="program" />
-              <div className="card-body">
-                <div className="card-topline">
-                  <span>{program.category}</span>
-                  <span>{program.area}</span>
-                </div>
-                <h3>{program.title}</h3>
-                <p>{program.shortDescription}</p>
-                <dl className="meta-list">
-                  <div>
-                    <dt>공간</dt>
-                    <dd>{program.spaceName}</dd>
-                  </div>
-                  <div>
-                    <dt>일시</dt>
-                    <dd>
-                      {program.date} · {program.time}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>가격</dt>
-                    <dd>
-                      {priceFormatter.format(program.originalPrice)}원 / 주민{" "}
-                      {priceFormatter.format(program.residentPrice)}원
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </article>
+        <p>
+          지역 주민은 할인가로, 외부 방문객은 정가로 참여할 수 있으며 참가비는
+          공간 유지와 다음 프로그램 운영으로 다시 순환됩니다.
+        </p>
+        <div className="policy-chip-list" aria-label="프로그램 유형">
+          {categoryChips.map((chip) => (
+            <span className="policy-chip" key={chip}>
+              {chip}
+            </span>
           ))}
         </div>
       </section>
+
+      <ProgramPosterSlider programs={programs} />
+
+      <section className="content-section">
+        <div className="section-heading">
+          <SectionLabel>프로그램 목록</SectionLabel>
+          <h2>주민 할인가로 만나는 동네 문화 프로그램</h2>
+        </div>
+        <div className="program-grid">
+          {programs.map((program) => (
+            <ProgramCard
+              key={program.id}
+              onApply={setSelectedProgram}
+              program={program}
+            />
+          ))}
+        </div>
+      </section>
+
+      <ProgramApplicationModal
+        key={selectedProgram?.id ?? "closed"}
+        onClose={() => setSelectedProgram(null)}
+        program={selectedProgram}
+      />
     </div>
   );
 }
