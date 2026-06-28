@@ -1,0 +1,80 @@
+export type ArchivePost = {
+  id: number;
+  title: string;
+  category: string;
+  area: string;
+  spaceName: string;
+  date: string;
+  thumbnailPrompt: string;
+  review: string;
+  comments: string[];
+};
+
+export const archivePosts: ArchivePost[] = [
+  {
+    id: 1,
+    title: "지산동 저녁 기타 공연",
+    category: "공연",
+    area: "지산동",
+    spaceName: "지산 로컬상가 1층",
+    date: "2026.06.12",
+    thumbnailPrompt: "어두운 소형 상가 안에서 기타 공연을 듣는 주민들",
+    review: "작은 공간이라 연주자와 관객의 거리가 가까웠고, 동네 안에서 공연을 본다는 점이 새로웠습니다.",
+    comments: ["퇴근 후 들르기 좋았어요.", "다음 달 공연도 기대됩니다."]
+  },
+  {
+    id: 2,
+    title: "범물동 그림 엽서 클래스",
+    category: "클래스",
+    area: "범물동",
+    spaceName: "범물 생활문화 점포",
+    date: "2026.06.15",
+    thumbnailPrompt: "테이블에 둘러앉아 그림 엽서를 만드는 주민들",
+    review: "처음 만난 이웃과 함께 그림을 그리며 자연스럽게 이야기를 나눌 수 있었습니다.",
+    comments: ["아이와 같이 참여하기 좋았어요.", "재료가 잘 준비되어 있었습니다."]
+  },
+  {
+    id: 3,
+    title: "파동 헬스케어 체험 데이",
+    category: "체험 부스",
+    area: "파동",
+    spaceName: "파동 커뮤니티 상가",
+    date: "2026.06.20",
+    thumbnailPrompt: "주민이 태블릿으로 헬스케어 앱을 체험하는 장면",
+    review: "앱 사용법을 직접 배워볼 수 있어서 디지털 서비스에 대한 부담이 줄었습니다.",
+    comments: ["설명이 친절했어요.", "시니어 대상 회차가 더 있으면 좋겠습니다."]
+  },
+  {
+    id: 4,
+    title: "만촌동 사진 산책 결과전",
+    category: "전시",
+    area: "만촌동",
+    spaceName: "만촌 크리에이터 스팟",
+    date: "2026.06.22",
+    thumbnailPrompt: "동네 사진이 벽에 걸린 작은 결과 전시",
+    review: "익숙한 골목을 다른 사람의 시선으로 보니 동네가 새롭게 느껴졌습니다.",
+    comments: ["사진 설명이 인상적이었습니다.", "다음에는 산책부터 참여하고 싶어요."]
+  },
+  {
+    id: 5,
+    title: "고산권 로컬 브랜드 이야기",
+    category: "세미나",
+    area: "고산권",
+    spaceName: "고산권 팝업 스튜디오",
+    date: "2026.06.27",
+    thumbnailPrompt: "작은 세미나 공간에서 로컬 브랜드 강의를 듣는 주민들",
+    review: "동네에서 시작할 수 있는 작은 브랜드 사례를 들으며 창업 아이디어를 구체화할 수 있었습니다.",
+    comments: ["자료가 실용적이었어요.", "후속 워크숍이 열리면 좋겠습니다."]
+  },
+  {
+    id: 6,
+    title: "주말 업사이클링 가족 클래스",
+    category: "클래스",
+    area: "고산권",
+    spaceName: "고산권 팝업 스튜디오",
+    date: "2026.06.29",
+    thumbnailPrompt: "가족이 함께 재활용 재료로 작품을 만드는 장면",
+    review: "아이와 함께 만들면서 환경 이야기도 나눌 수 있어 주말 프로그램으로 만족스러웠습니다.",
+    comments: ["가족 단위로 참여하기 편했습니다.", "완성품을 가져갈 수 있어 좋았어요."]
+  }
+];
