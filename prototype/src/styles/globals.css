@@ -1383,6 +1383,14 @@ select {
   background: var(--color-surface);
 }
 
+.program-card-poster {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--color-surface-soft);
+}
+
 .program-card-body {
   display: grid;
   gap: 1rem;

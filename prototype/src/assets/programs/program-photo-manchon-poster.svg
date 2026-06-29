@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" role="img" aria-labelledby="title desc">
+  <title id="title">동네 사진 산책 워크숍 포스터</title>
+  <desc id="desc">독립 사진집과 콘택트시트에서 착안한 만촌동 사진 산책 워크숍 포스터</desc>
+  <defs>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.78" numOctaves="4" seed="27" />
+      <feColorMatrix type="saturate" values="0" />
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.12" />
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="light-leak" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111114" />
+      <stop offset="0.58" stop-color="#151b22" />
+      <stop offset="1" stop-color="#ff654a" />
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1250" fill="#f1ead9" />
+  <rect x="62" y="62" width="876" height="1126" fill="#111114" />
+  <rect x="62" y="62" width="876" height="1126" fill="url(#light-leak)" opacity="0.75" />
+  <rect x="62" y="62" width="876" height="1126" filter="url(#grain)" />
+
+  <text x="104" y="145" fill="#f1ead9" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="30" font-weight="900" letter-spacing="7">PHOTO WALK</text>
+  <text x="104" y="252" fill="#f1ead9" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="92" font-weight="900">동네 사진</text>
+  <text x="104" y="356" fill="#f1ead9" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="92" font-weight="900">산책 워크숍</text>
+  <rect x="104" y="402" width="792" height="3" fill="#ff654a" />
+
+  <g transform="translate(104 462)">
+    <rect width="210" height="162" fill="#f1ead9" />
+    <rect x="26" y="26" width="158" height="110" fill="#252a2e" />
+    <path d="M28 122c36-38 76-50 118-24 17-25 33-32 48-22v60H28Z" fill="#f1ead9" opacity="0.78" />
+    <circle cx="72" cy="65" r="22" fill="#f1ead9" opacity="0.82" />
+
+    <rect x="258" width="210" height="162" fill="#f1ead9" />
+    <rect x="284" y="26" width="158" height="110" fill="#252a2e" />
+    <path d="M286 116c24-31 54-40 90-27 31-44 62-48 94-10v57H286Z" fill="#f1ead9" opacity="0.78" />
+    <circle cx="392" cy="66" r="19" fill="#f1ead9" opacity="0.82" />
+
+    <rect x="516" width="210" height="162" fill="#f1ead9" />
+    <rect x="542" y="26" width="158" height="110" fill="#252a2e" />
+    <path d="M544 126c36-46 78-50 126-12 14-20 24-25 30-15v37H544Z" fill="#f1ead9" opacity="0.78" />
+    <circle cx="590" cy="58" r="20" fill="#f1ead9" opacity="0.82" />
+  </g>
+
+  <g transform="translate(104 686)">
+    <rect width="122" height="86" fill="#f1ead9" opacity="0.94" />
+    <rect x="158" width="122" height="86" fill="#f1ead9" opacity="0.7" />
+    <rect x="316" width="122" height="86" fill="#f1ead9" opacity="0.94" />
+    <rect x="474" width="122" height="86" fill="#f1ead9" opacity="0.7" />
+    <rect x="632" width="122" height="86" fill="#f1ead9" opacity="0.94" />
+  </g>
+  <text x="104" y="838" fill="#f1ead9" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="42" font-weight="900">익숙한 골목을 다시 보는 법</text>
+  <rect x="104" y="900" width="792" height="2" fill="#f1ead9" opacity="0.62" />
+  <text x="104" y="970" fill="#f1ead9" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="42" font-weight="800">만촌 크리에이터 스팟</text>
+  <text x="104" y="1040" fill="#f1ead9" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="52" font-weight="900">2026.07.25 10:00</text>
+  <text x="104" y="1115" fill="#ff654a" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="46" font-weight="900">주민 10,000원</text>
+  <text x="664" y="1115" fill="#f1ead9" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="30" font-weight="800">사진가 이서윤</text>
+</svg>

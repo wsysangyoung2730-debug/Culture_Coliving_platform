@@ -1,3 +1,10 @@
+import concertBummulPoster from "../assets/programs/program-concert-bummul-poster.png";
+import brandSinmaePoster from "../assets/programs/program-brand-sinmae-poster.svg";
+import cupJisanPoster from "../assets/programs/program-cup-jisan-poster.svg";
+import healthPadongPoster from "../assets/programs/program-health-padong-poster.svg";
+import photoManchonPoster from "../assets/programs/program-photo-manchon-poster.svg";
+import upcycleSijiPoster from "../assets/programs/program-upcycle-siji-poster.svg";
+
 export type Program = {
   id: number;
   title: string;
@@ -12,6 +19,7 @@ export type Program = {
   discountRate: number;
   capacity: number;
   posterText: string;
+  posterImage?: string;
   shortDescription: string;
   detailDescription: string;
   target: string;
@@ -34,6 +42,7 @@ export const programs: Program[] = [
     discountRate: 53,
     capacity: 20,
     posterText: "작은 상가에서 만나는 저녁 음악회",
+    posterImage: concertBummulPoster,
     shortDescription: "퇴근 후 동네에서 편하게 듣는 어쿠스틱 라이브 공연입니다.",
     detailDescription:
       "문화관리인 뮤지션 팀이 공간 관리 활동과 함께 월 1회 운영하는 주민 대상 정기 공연입니다.",
@@ -55,6 +64,7 @@ export const programs: Program[] = [
     discountRate: 57,
     capacity: 12,
     posterText: "손으로 만드는 동네의 오후",
+    posterImage: cupJisanPoster,
     shortDescription: "기본 도자 재료로 일상에서 사용할 컵을 만드는 주민 클래스입니다.",
     detailDescription:
       "빈 상가를 공방형 창작 거점으로 활용하며 주민과 함께 결과물을 만드는 체험 프로그램입니다.",
@@ -76,6 +86,7 @@ export const programs: Program[] = [
     discountRate: 100,
     capacity: 40,
     posterText: "건강 데이터를 쉽게 이해하는 하루",
+    posterImage: healthPadongPoster,
     shortDescription: "주민이 직접 앱을 체험하고 건강 관리 기능을 알아보는 오픈 부스입니다.",
     detailDescription:
       "초기 스타트업 팀이 공간 사용 조건으로 주민 대상 서비스 체험과 짧은 설명 세션을 운영합니다.",
@@ -97,6 +108,7 @@ export const programs: Program[] = [
     discountRate: 56,
     capacity: 24,
     posterText: "동네에서 시작하는 작은 브랜드",
+    posterImage: brandSinmaePoster,
     shortDescription: "지역 소재와 개인의 관심사를 브랜드로 엮는 입문 세미나입니다.",
     detailDescription:
       "기획자와 디자이너 팀이 주민과 예비 창업자를 대상으로 로컬 브랜드 기초 구조를 공유합니다.",
@@ -118,6 +130,7 @@ export const programs: Program[] = [
     discountRate: 55,
     capacity: 15,
     posterText: "익숙한 골목을 다시 보는 법",
+    posterImage: photoManchonPoster,
     shortDescription: "동네를 함께 걸으며 사진으로 기록하고 짧게 공유하는 워크숍입니다.",
     detailDescription:
       "사진 창작자가 작업 공간을 기반으로 주민과 함께 지역의 장면을 기록하는 참여형 프로그램입니다.",
@@ -139,6 +152,7 @@ export const programs: Program[] = [
     discountRate: 52,
     capacity: 18,
     posterText: "버려지는 재료가 가족의 작품이 되는 시간",
+    posterImage: upcycleSijiPoster,
     shortDescription: "가족이 함께 생활 폐자재를 활용해 작은 오브제를 만드는 클래스입니다.",
     detailDescription:
       "환경과 창작을 결합한 주민 참여형 프로그램으로, 공간 사용 팀의 월간 문화 기여 활동입니다.",

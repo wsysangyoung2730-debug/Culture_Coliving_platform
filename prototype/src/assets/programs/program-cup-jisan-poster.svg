@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" role="img" aria-labelledby="title desc">
+  <title id="title">나만의 컵 만들기 클래스 포스터</title>
+  <desc id="desc">청화백자와 공예 전시 리플렛에서 착안한 지산동 컵 만들기 클래스 포스터</desc>
+  <defs>
+    <filter id="fiber">
+      <feTurbulence type="fractalNoise" baseFrequency="0.42" numOctaves="4" seed="19" />
+      <feColorMatrix type="saturate" values="0" />
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.18" />
+      </feComponentTransfer>
+    </filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#d5c6a3" stroke-width="1" opacity="0.38" />
+    </pattern>
+    <linearGradient id="ink" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0f3764" />
+      <stop offset="1" stop-color="#071a2e" />
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1250" fill="#f3ecd8" />
+  <rect width="1000" height="1250" fill="url(#grid)" />
+  <rect width="1000" height="1250" filter="url(#fiber)" />
+
+  <rect x="72" y="70" width="856" height="1110" fill="none" stroke="#123054" stroke-width="4" />
+
+  <text x="112" y="170" fill="#123054" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="30" font-weight="900" letter-spacing="8">CERAMIC WORKSHOP</text>
+  <text x="112" y="265" fill="#123054" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="90" font-weight="900">나만의</text>
+  <text x="112" y="365" fill="#123054" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="90" font-weight="900">컵 만들기</text>
+  <text x="112" y="465" fill="#123054" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="90" font-weight="900">클래스</text>
+
+  <g transform="translate(0 36)">
+    <ellipse cx="628" cy="455" rx="172" ry="48" fill="#f8f2e2" stroke="#123054" stroke-width="14" />
+    <path d="M456 452h344v280c0 96-77 174-172 174s-172-78-172-174Z" fill="#f8f2e2" stroke="#123054" stroke-width="14" />
+    <path d="M802 566h74c64 0 116 52 116 116s-52 116-116 116h-74" fill="none" stroke="#123054" stroke-width="14" />
+    <path d="M504 562c56 34 105 34 147 0s90-34 146 0" fill="none" stroke="#1d5f99" stroke-width="12" stroke-linecap="round" />
+    <path d="M504 640c56 34 105 34 147 0s90-34 146 0" fill="none" stroke="#1d5f99" stroke-width="12" stroke-linecap="round" />
+    <path d="M504 718c56 34 105 34 147 0s90-34 146 0" fill="none" stroke="#1d5f99" stroke-width="12" stroke-linecap="round" />
+  </g>
+
+  <g fill="none" stroke="url(#ink)" stroke-width="10" stroke-linecap="round">
+    <path d="M148 697c80-38 156-38 228 0" />
+    <path d="M148 765c80-38 156-38 228 0" />
+    <path d="M148 833c80-38 156-38 228 0" />
+  </g>
+  <circle cx="206" cy="606" r="44" fill="#d75b47" />
+  <circle cx="318" cy="606" r="44" fill="#123054" />
+
+  <rect x="112" y="948" width="776" height="3" fill="#123054" opacity="0.74" />
+  <text x="112" y="1018" fill="#123054" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="42" font-weight="900">지산 로컬상가 1층</text>
+  <text x="112" y="1087" fill="#123054" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="52" font-weight="900">2026.07.13 14:00</text>
+  <text x="112" y="1158" fill="#d75b47" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="44" font-weight="900">주민 12,000원</text>
+  <text x="632" y="1158" fill="#123054" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="30" font-weight="800">공예 스튜디오 담</text>
+</svg>

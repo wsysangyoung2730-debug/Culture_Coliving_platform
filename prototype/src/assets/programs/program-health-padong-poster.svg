@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" role="img" aria-labelledby="title desc">
+  <title id="title">우리 동네 헬스케어 앱 체험부스 포스터</title>
+  <desc id="desc">파동 헬스케어 앱 체험부스를 위한 데이터 대시보드 무드의 세로 포스터</desc>
+  <defs>
+    <filter id="soft-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.52" numOctaves="2" seed="13" />
+      <feColorMatrix type="saturate" values="0" />
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.08" />
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="tech-bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#071823" />
+      <stop offset="0.52" stop-color="#0b3040" />
+      <stop offset="1" stop-color="#c9f26d" />
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#tech-bg)" />
+  <rect width="1000" height="1250" filter="url(#soft-noise)" />
+  <g opacity="0.28" stroke="#a7f7ff" stroke-width="2">
+    <path d="M80 210h840M80 330h840M80 450h840M80 570h840M80 690h840" />
+    <path d="M160 130v660M300 130v660M440 130v660M580 130v660M720 130v660M860 130v660" />
+  </g>
+  <rect x="590" y="168" width="250" height="520" rx="42" fill="#eaf9ff" />
+  <rect x="622" y="232" width="186" height="94" rx="26" fill="#09202c" />
+  <path d="M638 444h144" stroke="#0bba91" stroke-width="20" stroke-linecap="round" />
+  <path d="M638 506h100" stroke="#fc6358" stroke-width="20" stroke-linecap="round" />
+  <path d="M638 568h126" stroke="#f7d15c" stroke-width="20" stroke-linecap="round" />
+  <circle cx="715" cy="374" r="38" fill="#0bba91" />
+  <path d="M180 678c44-89 89-115 134-78s89 20 133-50 91-95 140-75" fill="none" stroke="#c9f26d" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="76" y="145" fill="#c9f26d" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="32" font-weight="900" letter-spacing="5">OPEN BOOTH</text>
+  <text x="76" y="260" fill="#f4fbff" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="88" font-weight="900">우리 동네</text>
+  <text x="76" y="365" fill="#f4fbff" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="88" font-weight="900">헬스케어 앱</text>
+  <text x="76" y="470" fill="#f4fbff" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="88" font-weight="900">체험부스</text>
+  <rect x="76" y="815" width="848" height="2" fill="#f4fbff" opacity="0.55" />
+  <text x="76" y="892" fill="#f4fbff" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="42" font-weight="800">파동 커뮤니티 상가</text>
+  <text x="76" y="962" fill="#f4fbff" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="52" font-weight="900">2026.07.18 13:00</text>
+  <text x="76" y="1038" fill="#c9f26d" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="52" font-weight="900">주민 무료</text>
+  <text x="76" y="1110" fill="#a7f7ff" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="31" font-weight="700">웰니스 초기 스타트업 루프</text>
+</svg>

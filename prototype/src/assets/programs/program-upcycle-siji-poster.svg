@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" role="img" aria-labelledby="title desc">
+  <title id="title">가족과 함께하는 업사이클링 클래스 포스터</title>
+  <desc id="desc">순환 화살표와 식물 패턴을 결합한 시지동 업사이클링 클래스 포스터</desc>
+  <defs>
+    <filter id="eco-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.58" numOctaves="3" seed="61" />
+      <feColorMatrix type="saturate" values="0" />
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.1" />
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="ocean" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#082341" />
+      <stop offset="0.55" stop-color="#114b86" />
+      <stop offset="1" stop-color="#70d95a" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="1250" fill="url(#ocean)" />
+  <rect width="1000" height="1250" filter="url(#eco-grain)" />
+
+  <rect x="62" y="62" width="876" height="1126" rx="42" fill="none" stroke="#eaf7ff" stroke-width="4" opacity="0.8" />
+  <circle cx="500" cy="382" r="210" fill="#0b3357" opacity="0.25" />
+  <circle cx="500" cy="382" r="238" fill="none" stroke="#ffffff" stroke-width="24" opacity="0.95" />
+  <circle cx="500" cy="382" r="188" fill="none" stroke="#7cc6ff" stroke-width="22" opacity="0.96" />
+  <circle cx="500" cy="382" r="138" fill="none" stroke="#42d36b" stroke-width="22" opacity="0.96" />
+
+  <g transform="translate(346 237)">
+    <rect x="0" y="0" width="308" height="290" rx="44" fill="#f4fff0" />
+    <rect x="40" y="42" width="228" height="206" rx="26" fill="#0b3357" opacity="0.12" />
+    <path d="M62 200c56-76 112-76 168 0" fill="none" stroke="#0b3357" stroke-width="16" stroke-linecap="round" />
+    <circle cx="104" cy="104" r="38" fill="#42d36b" />
+    <circle cx="178" cy="104" r="38" fill="#7cc6ff" />
+    <path d="M143 72l72 126H71Z" fill="#ffffff" stroke="#0b3357" stroke-width="12" stroke-linejoin="round" />
+    <path d="M97 186h114" stroke="#42d36b" stroke-width="16" stroke-linecap="round" />
+    <path d="M116 224h76" stroke="#7cc6ff" stroke-width="16" stroke-linecap="round" />
+  </g>
+
+  <text x="86" y="790" fill="#ffffff" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="86" font-weight="900">가족과 함께하는</text>
+  <text x="86" y="892" fill="#ffffff" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="86" font-weight="900">업사이클링 클래스</text>
+  <text x="90" y="955" fill="#c7f6d5" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="34" font-weight="800">버려지는 재료가 가족의 작품이 되는 시간</text>
+
+  <rect x="86" y="1016" width="828" height="3" fill="#eaf7ff" opacity="0.68" />
+  <text x="86" y="1084" fill="#eaf7ff" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="40" font-weight="900">시지 생활문화 스튜디오</text>
+  <text x="86" y="1154" fill="#ffffff" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="50" font-weight="900">2026.07.26 11:00</text>
+  <text x="560" y="1154" fill="#8df45f" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="44" font-weight="900">주민 12,000원</text>
+</svg>

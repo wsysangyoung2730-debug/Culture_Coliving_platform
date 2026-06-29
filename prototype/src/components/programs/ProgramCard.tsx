@@ -10,7 +10,15 @@ type ProgramCardProps = {
 export function ProgramCard({ program, onApply }: ProgramCardProps) {
   return (
     <article className="program-card">
-      <PlaceholderImage label={program.posterText} variant="program" />
+      {program.posterImage ? (
+        <img
+          className="program-card-poster"
+          src={program.posterImage}
+          alt={`${program.title} 포스터`}
+        />
+      ) : (
+        <PlaceholderImage label={program.posterText} variant="program" />
+      )}
       <div className="program-card-body">
         <div className="card-topline">
           <span>{program.category}</span>
