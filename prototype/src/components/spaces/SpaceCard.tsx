@@ -1,5 +1,6 @@
-import { PlaceholderImage } from "../common/PlaceholderImage";
+import type { KeyboardEvent } from "react";
 import type { Space } from "../../data/spaces";
+import { SpaceImageCarousel } from "./SpaceImageCarousel";
 
 type SpaceCardProps = {
   space: Space;
@@ -15,17 +16,25 @@ export function SpaceCard({
   onApply
 }: SpaceCardProps) {
   const isClosed = space.status === "마감";
+  const handleSelectKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onSelect(space);
+    }
+  };
 
   return (
     <article className={`space-card ${isSelected ? "space-card-selected" : ""}`}>
-      <button
+      <div
         aria-pressed={isSelected}
         className="space-card-select"
         onClick={() => onSelect(space)}
-        type="button"
+        onKeyDown={handleSelectKeyDown}
+        role="button"
+        tabIndex={0}
       >
         <div className="space-card-visual">
-          <PlaceholderImage label={space.area} variant="space" />
+          <SpaceImageCarousel images={space.images} />
           {isSelected && <span className="selected-image-badge">선택됨</span>}
         </div>
         <div className="space-card-body">
@@ -71,7 +80,7 @@ export function SpaceCard({
             ))}
           </div>
         </div>
-      </button>
+      </div>
       <div className="space-card-actions">
         <button
           className="button button-primary space-apply-button"
