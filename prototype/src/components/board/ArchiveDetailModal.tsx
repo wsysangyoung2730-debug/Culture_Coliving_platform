@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { PlaceholderImage } from "../common/PlaceholderImage";
 import { CommentForm } from "./CommentForm";
 import { CommentList } from "./CommentList";
-import type { ArchivePost } from "../../data/archivePosts";
+import type { ArchiveComment, ArchivePost } from "../../data/archivePosts";
 
 type ArchiveDetailModalProps = {
   post: ArchivePost | null;
-  comments: string[];
+  comments: ArchiveComment[];
   onAddComment: (postId: number, comment: string) => void;
   onClose: () => void;
 };

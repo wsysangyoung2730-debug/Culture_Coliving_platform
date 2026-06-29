@@ -3,11 +3,27 @@ import { ArchiveCard } from "../components/board/ArchiveCard";
 import { ArchiveDetailModal } from "../components/board/ArchiveDetailModal";
 import { SectionLabel } from "../components/common/SectionLabel";
 import { archivePosts } from "../data/archivePosts";
-import type { ArchivePost } from "../data/archivePosts";
+import type { ArchiveComment, ArchivePost } from "../data/archivePosts";
 
 const categoryChips = ["공연", "클래스", "전시", "세미나", "체험 부스"];
+const postsPerPage = 6;
 
-type CommentState = Record<number, string[]>;
+type CommentState = Record<number, ArchiveComment[]>;
+
+const parseArchiveDate = (date: string) => {
+  const [year, month, day] = date.split(".").map(Number);
+
+  if (!year || !month || !day) {
+    return 0;
+  }
+
+  return new Date(year, month - 1, day).getTime();
+};
+
+const sortedArchivePosts = [...archivePosts].sort(
+  (firstPost, secondPost) =>
+    parseArchiveDate(secondPost.date) - parseArchiveDate(firstPost.date)
+);
 
 const initialComments = archivePosts.reduce<CommentState>((accumulator, post) => {
   accumulator[post.id] = post.comments;
@@ -17,11 +33,25 @@ const initialComments = archivePosts.reduce<CommentState>((accumulator, post) =>
 export function BoardPage() {
   const [selectedPost, setSelectedPost] = useState<ArchivePost | null>(null);
   const [commentsByPost, setCommentsByPost] = useState<CommentState>(initialComments);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(sortedArchivePosts.length / postsPerPage);
+  const shouldShowPagination = sortedArchivePosts.length > postsPerPage;
+  const visiblePosts = sortedArchivePosts.slice(
+    (currentPage - 1) * postsPerPage,
+    currentPage * postsPerPage
+  );
 
   const handleAddComment = (postId: number, comment: string) => {
     setCommentsByPost((current) => ({
       ...current,
-      [postId]: [...(current[postId] ?? []), comment]
+      [postId]: [
+        ...(current[postId] ?? []),
+        {
+          id: Date.now(),
+          authorId: "local_guest",
+          content: comment
+        }
+      ]
     }));
   };
 
@@ -53,10 +83,30 @@ export function BoardPage() {
           <p>주민 후기와 댓글을 통해 프로그램의 흔적을 이어갑니다.</p>
         </div>
         <div className="archive-grid">
-          {archivePosts.map((post) => (
+          {visiblePosts.map((post) => (
             <ArchiveCard key={post.id} onOpen={setSelectedPost} post={post} />
           ))}
         </div>
+        {shouldShowPagination && (
+          <nav className="archive-pagination" aria-label="아카이브 페이지">
+            {Array.from({ length: totalPages }, (_, index) => {
+              const pageNumber = index + 1;
+              const isCurrentPage = pageNumber === currentPage;
+
+              return (
+                <button
+                  aria-current={isCurrentPage ? "page" : undefined}
+                  className={isCurrentPage ? "archive-page-active" : ""}
+                  key={pageNumber}
+                  onClick={() => setCurrentPage(pageNumber)}
+                  type="button"
+                >
+                  {pageNumber}
+                </button>
+              );
+            })}
+          </nav>
+        )}
       </section>
 
       <ArchiveDetailModal

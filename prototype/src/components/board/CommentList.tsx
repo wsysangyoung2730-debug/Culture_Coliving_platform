@@ -1,5 +1,7 @@
+import type { ArchiveComment } from "../../data/archivePosts";
+
 type CommentListProps = {
-  comments: string[];
+  comments: ArchiveComment[];
 };
 
 export function CommentList({ comments }: CommentListProps) {
@@ -9,10 +11,10 @@ export function CommentList({ comments }: CommentListProps) {
 
   return (
     <ul className="comment-list">
-      {comments.map((comment, index) => (
-        <li key={`${comment}-${index}`}>
-          <span>주민 의견</span>
-          <p>{comment}</p>
+      {comments.map((comment) => (
+        <li key={comment.id}>
+          <span>@{comment.authorId}</span>
+          <p>{comment.content}</p>
         </li>
       ))}
     </ul>
