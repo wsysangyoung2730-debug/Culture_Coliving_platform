@@ -24,13 +24,15 @@ export function SpaceCard({
         onClick={() => onSelect(space)}
         type="button"
       >
-        <PlaceholderImage label={space.area} variant="space" />
+        <div className="space-card-visual">
+          <PlaceholderImage label={space.area} variant="space" />
+          {isSelected && <span className="selected-image-badge">선택됨</span>}
+        </div>
         <div className="space-card-body">
           <div className="card-topline">
             <span>{space.area}</span>
             <span className="card-badge-row">
-              {isSelected && <span className="badge selected-badge">선택됨</span>}
-              <span className={isClosed ? "badge badge-muted" : "badge"}>
+              <span className={isClosed ? "badge status-badge status-closed" : "badge status-badge status-open"}>
                 {space.status}
               </span>
             </span>

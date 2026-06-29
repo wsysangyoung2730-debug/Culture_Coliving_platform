@@ -59,6 +59,12 @@ const RequiredMark = () => (
   </span>
 );
 
+const RequiredLabel = ({ children }: { children: string }) => (
+  <span className="required-label-text">
+    {children} <RequiredMark />
+  </span>
+);
+
 export function SpaceApplicationModal({
   space,
   onClose
@@ -188,7 +194,7 @@ export function SpaceApplicationModal({
 
             <form className="application-form" onSubmit={handleSubmit}>
               <label>
-                이름 또는 팀명 <RequiredMark />
+                <RequiredLabel>이름 또는 팀명</RequiredLabel>
                 <input
                   aria-required="true"
                   onChange={(event) => updateField("name", event.target.value)}
@@ -196,7 +202,7 @@ export function SpaceApplicationModal({
                 />
               </label>
               <label>
-                대표자 연락처 <RequiredMark />
+                <RequiredLabel>대표자 연락처</RequiredLabel>
                 <input
                   aria-required="true"
                   inputMode="numeric"
@@ -208,7 +214,7 @@ export function SpaceApplicationModal({
                 />
               </label>
               <label>
-                이메일 <RequiredMark />
+                <RequiredLabel>이메일</RequiredLabel>
                 <input
                   aria-required="true"
                   inputMode="email"
@@ -219,7 +225,7 @@ export function SpaceApplicationModal({
                 />
               </label>
               <label>
-                창작자 형태 <RequiredMark />
+                <RequiredLabel>창작자 형태</RequiredLabel>
                 <select
                   aria-required="true"
                   onChange={(event) => updateField("creatorType", event.target.value)}
@@ -234,7 +240,7 @@ export function SpaceApplicationModal({
                 </select>
               </label>
               <label className="form-wide">
-                활동 내용 <RequiredMark />
+                <RequiredLabel>활동 내용</RequiredLabel>
                 <textarea
                   aria-required="true"
                   onChange={(event) => updateField("activity", event.target.value)}
@@ -243,7 +249,7 @@ export function SpaceApplicationModal({
                 />
               </label>
               <label className="form-wide">
-                제공 가능한 프로그램 <RequiredMark />
+                <RequiredLabel>제공 가능한 프로그램</RequiredLabel>
                 <textarea
                   aria-required="true"
                   onChange={(event) => updateField("possibleProgram", event.target.value)}
@@ -260,7 +266,9 @@ export function SpaceApplicationModal({
                     onChange={(event) => updateField("agreeManage", event.target.checked)}
                     type="checkbox"
                   />
-                  공간 관리 의무에 동의합니다. <RequiredMark />
+                  <span className="agreement-label-text">
+                    공간 관리 의무에 동의합니다. <RequiredMark />
+                  </span>
                 </label>
                 <label>
                   <input
@@ -268,7 +276,9 @@ export function SpaceApplicationModal({
                     onChange={(event) => updateField("agreeProgram", event.target.checked)}
                     type="checkbox"
                   />
-                  월 1회 문화 프로그램 운영에 동의합니다. <RequiredMark />
+                  <span className="agreement-label-text">
+                    월 1회 문화 프로그램 운영에 동의합니다. <RequiredMark />
+                  </span>
                 </label>
                 <label>
                   <input
@@ -276,7 +286,9 @@ export function SpaceApplicationModal({
                     onChange={(event) => updateField("agreePrivacy", event.target.checked)}
                     type="checkbox"
                   />
-                  개인정보 수집 및 이용에 동의합니다. <RequiredMark />
+                  <span className="agreement-label-text">
+                    개인정보 수집 및 이용에 동의합니다. <RequiredMark />
+                  </span>
                 </label>
               </fieldset>
 
