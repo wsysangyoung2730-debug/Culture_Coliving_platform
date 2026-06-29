@@ -45,8 +45,8 @@ export function SpacesPage() {
       <section className="content-section">
         <div className="section-heading">
           <SectionLabel>공간 목록</SectionLabel>
-          <h2>사용 가능 공간 목록</h2>
-          <p>사용 가능한 공간의 정보를 확인하고 비교하세요.</p>
+          <h2>신청 가능 공간 목록</h2>
+          <p>신청 가능한 공간의 정보를 확인하고 비교하세요.</p>
         </div>
         <div className="spaces-layout">
           <div className="spaces-card-list">

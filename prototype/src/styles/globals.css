@@ -759,17 +759,6 @@ select {
   color: var(--color-muted);
 }
 
-.map-mode-badge {
-  flex: 0 0 auto;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  padding: 0.55rem 0.8rem;
-  color: var(--color-muted);
-  background: rgba(245, 240, 232, 0.04);
-  font-size: 0.86rem;
-  font-weight: 800;
-}
-
 .spaces-map {
   position: relative;
   min-height: 28rem;
@@ -790,6 +779,57 @@ select {
 
 .kakao-map-canvas.is-hidden {
   display: none;
+}
+
+.map-control-group {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgba(170, 137, 135, 0.22);
+  border-radius: 999px;
+  padding: 0.35rem;
+  background: rgba(5, 13, 20, 0.82);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(10px);
+}
+
+.map-control-group button {
+  min-width: 2.45rem;
+  min-height: 2.45rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0 0.82rem;
+  color: var(--color-text);
+  background: rgba(245, 240, 232, 0.05);
+  font-size: 0.92rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.map-control-group button:hover,
+.map-control-group button:focus-visible {
+  border-color: rgba(255, 83, 91, 0.42);
+  color: #ffb3b1;
+  background: rgba(255, 83, 91, 0.16);
+}
+
+.map-control-group button:focus-visible {
+  outline: 2px solid rgba(255, 83, 91, 0.72);
+  outline-offset: 2px;
+}
+
+.map-control-group button:disabled {
+  color: var(--color-muted);
+  cursor: not-allowed;
+  opacity: 0.58;
 }
 
 .map-loading-panel,
@@ -2558,8 +2598,7 @@ body {
 .badge,
 .discount-badge,
 .policy-chip,
-.soft-chip,
-.map-mode-badge {
+.soft-chip {
   border-radius: 999px;
   border-color: rgba(255, 83, 91, 0.28);
   color: #ffb3b1;

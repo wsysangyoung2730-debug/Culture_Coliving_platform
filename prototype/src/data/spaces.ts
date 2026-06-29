@@ -106,11 +106,11 @@ export const spaces: Space[] = [
   },
   {
     id: 5,
-    name: "고산권 팝업 스튜디오",
-    area: "고산권",
-    address: "대구 수성구 신매동·고산권 일대",
-    lat: 35.8409,
-    lng: 128.7059,
+    name: "신매 팝업 스튜디오",
+    area: "신매동",
+    address: "대구 수성구 신매동 일대",
+    lat: 35.8398,
+    lng: 128.7045,
     type: "빈 상가",
     size: "약 36㎡",
     floor: "1층",
@@ -118,11 +118,32 @@ export const spaces: Space[] = [
     totalUnits: 3,
     status: "신청 가능",
     monthlyCost: "조건부 감면",
-    recommendedFor: ["팝업", "체험 전시", "교육 프로그램"],
+    recommendedFor: ["팝업", "체험 부스", "교육 프로그램"],
     shortDescription:
-      "유동 인구가 있는 생활권 상가로, 주민 체험 부스와 팝업 프로그램을 운영하기 좋은 공간입니다.",
+      "생활 상권과 가까운 1층 빈 상가로, 주민 체험 부스와 팝업 프로그램 운영에 적합한 공간입니다.",
     facility: "입구 전면 노출, 팝업 부스 설치 가능, 간단한 전시 가능",
     condition: "월 1회 주민 대상 체험 프로그램 운영과 공간 정리 기록 제출이 필요합니다.",
     programExample: "로컬 브랜드 팝업, 앱 체험 부스, 가족 참여형 만들기 클래스"
+  },
+  {
+    id: 6,
+    name: "시지 생활문화 스튜디오",
+    area: "시지동",
+    address: "대구 수성구 시지동 일대",
+    lat: 35.8374,
+    lng: 128.6982,
+    type: "빈 상가",
+    size: "약 30㎡",
+    floor: "2층",
+    remainingUnits: 0,
+    totalUnits: 2,
+    status: "마감",
+    monthlyCost: "저비용 사용",
+    recommendedFor: ["소규모 클래스", "전시", "커뮤니티 모임"],
+    shortDescription:
+      "주거 생활권 안에 위치한 소형 상가 공간으로, 작은 클래스와 동네 커뮤니티 프로그램에 적합합니다.",
+    facility: "테이블 배치 가능, 벽면 전시 가능, 소규모 모임 운영 가능",
+    condition: "월 1회 주민 대상 문화 프로그램 운영과 기본 시설 관리가 필요합니다.",
+    programExample: "동네 독서 모임, 사진 전시, 생활 공예 클래스"
   }
 ];
