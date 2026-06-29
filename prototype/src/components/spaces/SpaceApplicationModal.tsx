@@ -14,7 +14,6 @@ type ApplicationForm = {
   creatorType: string;
   activity: string;
   possibleProgram: string;
-  desiredSpace: string;
   agreeManage: boolean;
   agreeProgram: boolean;
   agreePrivacy: boolean;
@@ -27,7 +26,6 @@ const initialForm: ApplicationForm = {
   creatorType: "",
   activity: "",
   possibleProgram: "",
-  desiredSpace: "",
   agreeManage: false,
   agreeProgram: false,
   agreePrivacy: false
@@ -35,14 +33,37 @@ const initialForm: ApplicationForm = {
 
 const creatorTypeOptions = ["개인 창작자", "예술팀", "스타트업", "기획자", "기타"];
 
+const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const formatPhoneNumber = (value: string) => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  const first = digits.slice(0, 3);
+  const second = digits.slice(3, 7);
+  const third = digits.slice(7, 11);
+
+  if (digits.length > 7) {
+    return `${first}-${second}-${third}`;
+  }
+
+  if (digits.length > 3) {
+    return `${first}-${second}`;
+  }
+
+  return first;
+};
+
+const RequiredMark = () => (
+  <span aria-hidden="true" className="required-mark">
+    *
+  </span>
+);
+
 export function SpaceApplicationModal({
   space,
   onClose
 }: SpaceApplicationModalProps) {
-  const [form, setForm] = useState<ApplicationForm>({
-    ...initialForm,
-    desiredSpace: space?.name ?? ""
-  });
+  const [form, setForm] = useState<ApplicationForm>(initialForm);
   const [error, setError] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -72,22 +93,36 @@ export function SpaceApplicationModal({
     setForm((current) => ({ ...current, [field]: value }));
   };
 
-  const isValid =
+  const hasRequiredFields =
     form.name.trim() &&
     form.phone.trim() &&
     form.email.trim() &&
     form.creatorType &&
     form.activity.trim() &&
-    form.possibleProgram.trim() &&
-    form.desiredSpace.trim() &&
-    form.agreeManage &&
-    form.agreeProgram &&
-    form.agreePrivacy;
+    form.possibleProgram.trim();
+
+  const hasRequiredAgreements =
+    form.agreeManage && form.agreeProgram && form.agreePrivacy;
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!isValid) {
+    if (!hasRequiredFields) {
+      setError("필수 정보를 입력하고 모든 동의 항목을 체크해주세요.");
+      return;
+    }
+
+    if (!phoneRegex.test(form.phone)) {
+      setError("대표자 연락처는 000-0000-0000 형식으로 입력해주세요.");
+      return;
+    }
+
+    if (!emailRegex.test(form.email)) {
+      setError("이메일 형식이 올바르지 않습니다.");
+      return;
+    }
+
+    if (!hasRequiredAgreements) {
       setError("필수 정보를 입력하고 모든 동의 항목을 체크해주세요.");
       return;
     }
@@ -135,37 +170,58 @@ export function SpaceApplicationModal({
 
             <div className="selected-space-summary">
               <strong>{space.name}</strong>
-              <span>
-                {space.area} · {space.size} · {space.monthlyCost}
-              </span>
+              <dl>
+                <div>
+                  <dt>지역</dt>
+                  <dd>{space.area}</dd>
+                </div>
+                <div>
+                  <dt>면적</dt>
+                  <dd>{space.size}</dd>
+                </div>
+                <div>
+                  <dt>사용 조건</dt>
+                  <dd>{space.condition}</dd>
+                </div>
+              </dl>
             </div>
 
             <form className="application-form" onSubmit={handleSubmit}>
               <label>
-                이름 또는 팀명
+                이름 또는 팀명 <RequiredMark />
                 <input
+                  aria-required="true"
                   onChange={(event) => updateField("name", event.target.value)}
                   value={form.name}
                 />
               </label>
               <label>
-                대표자 연락처
+                대표자 연락처 <RequiredMark />
                 <input
-                  onChange={(event) => updateField("phone", event.target.value)}
+                  aria-required="true"
+                  inputMode="numeric"
+                  onChange={(event) =>
+                    updateField("phone", formatPhoneNumber(event.target.value))
+                  }
+                  placeholder="010-1234-5678"
                   value={form.phone}
                 />
               </label>
               <label>
-                이메일
+                이메일 <RequiredMark />
                 <input
+                  aria-required="true"
+                  inputMode="email"
                   onChange={(event) => updateField("email", event.target.value)}
-                  type="email"
+                  placeholder="creator@example.com"
+                  type="text"
                   value={form.email}
                 />
               </label>
               <label>
-                창작자 형태
+                창작자 형태 <RequiredMark />
                 <select
+                  aria-required="true"
                   onChange={(event) => updateField("creatorType", event.target.value)}
                   value={form.creatorType}
                 >
@@ -178,26 +234,21 @@ export function SpaceApplicationModal({
                 </select>
               </label>
               <label className="form-wide">
-                활동 내용
+                활동 내용 <RequiredMark />
                 <textarea
+                  aria-required="true"
                   onChange={(event) => updateField("activity", event.target.value)}
                   placeholder="현재 하고 있는 창작 활동이나 프로젝트를 간단히 적어주세요."
                   value={form.activity}
                 />
               </label>
               <label className="form-wide">
-                제공 가능한 프로그램
+                제공 가능한 프로그램 <RequiredMark />
                 <textarea
+                  aria-required="true"
                   onChange={(event) => updateField("possibleProgram", event.target.value)}
                   placeholder="지역 주민에게 제공할 수 있는 프로그램을 적어주세요. 예: 월 1회 공연, 원데이 클래스, 앱 체험부스, 세미나 등"
                   value={form.possibleProgram}
-                />
-              </label>
-              <label className="form-wide">
-                희망 공간
-                <input
-                  onChange={(event) => updateField("desiredSpace", event.target.value)}
-                  value={form.desiredSpace}
                 />
               </label>
 
@@ -209,7 +260,7 @@ export function SpaceApplicationModal({
                     onChange={(event) => updateField("agreeManage", event.target.checked)}
                     type="checkbox"
                   />
-                  공간 관리 의무에 동의합니다.
+                  공간 관리 의무에 동의합니다. <RequiredMark />
                 </label>
                 <label>
                   <input
@@ -217,7 +268,7 @@ export function SpaceApplicationModal({
                     onChange={(event) => updateField("agreeProgram", event.target.checked)}
                     type="checkbox"
                   />
-                  월 1회 문화 프로그램 운영에 동의합니다.
+                  월 1회 문화 프로그램 운영에 동의합니다. <RequiredMark />
                 </label>
                 <label>
                   <input
@@ -225,7 +276,7 @@ export function SpaceApplicationModal({
                     onChange={(event) => updateField("agreePrivacy", event.target.checked)}
                     type="checkbox"
                   />
-                  개인정보 수집 및 이용에 동의합니다.
+                  개인정보 수집 및 이용에 동의합니다. <RequiredMark />
                 </label>
               </fieldset>
 

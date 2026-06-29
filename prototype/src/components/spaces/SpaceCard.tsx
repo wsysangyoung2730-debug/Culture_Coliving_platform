@@ -19,6 +19,7 @@ export function SpaceCard({
   return (
     <article className={`space-card ${isSelected ? "space-card-selected" : ""}`}>
       <button
+        aria-pressed={isSelected}
         className="space-card-select"
         onClick={() => onSelect(space)}
         type="button"
@@ -27,8 +28,11 @@ export function SpaceCard({
         <div className="space-card-body">
           <div className="card-topline">
             <span>{space.area}</span>
-            <span className={isClosed ? "badge badge-muted" : "badge"}>
-              {space.status}
+            <span className="card-badge-row">
+              {isSelected && <span className="badge selected-badge">선택됨</span>}
+              <span className={isClosed ? "badge badge-muted" : "badge"}>
+                {space.status}
+              </span>
             </span>
           </div>
           <h3>{space.name}</h3>
