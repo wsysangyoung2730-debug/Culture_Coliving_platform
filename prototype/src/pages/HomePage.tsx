@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { RevealOnScroll } from "../components/common/RevealOnScroll";
 import { SectionLabel } from "../components/common/SectionLabel";
+import { CirculationDiagram } from "../components/home/CirculationDiagram";
 import { HomeSectionNav } from "../components/home/HomeSectionNav";
+import { PilotScheduleTable } from "../components/home/PilotScheduleTable";
 
 const problemCards = [
   {
@@ -59,7 +62,9 @@ const evaluationItems = [
   "참여자 수",
   "주민 후기",
   "공간 관리 상태",
-  "재방문율"
+  "재방문율",
+  "창작자 잔존율",
+  "손익분기 달성 여부"
 ];
 
 export function HomePage() {
@@ -105,7 +110,7 @@ export function HomePage() {
         className="content-section landing-section home-section-anchor"
         id="problem"
       >
-        <div className="section-heading">
+        <RevealOnScroll className="section-heading" variant="slide-left">
           <SectionLabel>문제 정의</SectionLabel>
           <h2 id="problem-title">
             동네의 빈 공간은 늘어나고,
@@ -116,18 +121,23 @@ export function HomePage() {
             수성구 외곽 생활권의 빈 상가는 관리되지 않는 공간으로 남고,
             청년 창작자와 주민은 각자의 필요를 해결할 접점이 부족합니다.
           </p>
-        </div>
+        </RevealOnScroll>
         <div className="problem-grid">
-          {problemCards.map((problem) => (
-            <article className="problem-card" key={problem.title}>
+          {problemCards.map((problem, index) => (
+            <RevealOnScroll
+              as="article"
+              className="problem-card"
+              delay={index * 120}
+              key={problem.title}
+            >
               <h3>{problem.title}</h3>
               <p>{problem.body}</p>
-            </article>
+            </RevealOnScroll>
           ))}
         </div>
-        <p className="local-context">
+        <RevealOnScroll as="p" className="local-context" delay={360}>
           수성구 외곽 생활권 예시: 지산동, 범물동, 파동, 만촌동, 고산권 일대
-        </p>
+        </RevealOnScroll>
       </section>
 
       <section
@@ -135,7 +145,7 @@ export function HomePage() {
         className="content-section landing-section home-section-anchor"
         id="solution"
       >
-        <div className="section-heading">
+        <RevealOnScroll className="section-heading">
           <SectionLabel>해결 구조</SectionLabel>
           <h2 id="solution-title">
             공간을 쓰는 청년이,
@@ -146,23 +156,28 @@ export function HomePage() {
             청년 창작자는 빈 상가를 조건부 저비용으로 사용하고, 기본 시설
             관리와 월 1회 문화 프로그램 운영을 통해 지역 주민과 연결됩니다.
           </p>
-        </div>
+        </RevealOnScroll>
 
         <div className="solution-steps">
-          {solutionSteps.map((step) => (
-            <article className="solution-step" key={step.number}>
+          {solutionSteps.map((step, index) => (
+            <RevealOnScroll
+              as="article"
+              className="solution-step"
+              delay={index * 140}
+              key={step.number}
+            >
               <span>{step.number}</span>
               <h3>{step.title}</h3>
               <p>{step.body}</p>
-            </article>
+            </RevealOnScroll>
           ))}
         </div>
 
-        <p className="model-statement">
+        <RevealOnScroll as="p" className="model-statement" delay={420}>
           공간 사용권과 문화 기여를 교환해,
           <br />
           빈 공간과 주민의 일상을 함께 살리는 구조입니다.
-        </p>
+        </RevealOnScroll>
       </section>
 
       <section
@@ -170,7 +185,7 @@ export function HomePage() {
         className="content-section landing-section home-section-anchor"
         id="circulation"
       >
-        <div className="section-heading">
+        <RevealOnScroll className="section-heading">
           <SectionLabel>순환 모델</SectionLabel>
           <h2 id="circulation-title">
             프로그램 참가비는 다시 공간과 프로그램으로 돌아갑니다.
@@ -180,28 +195,31 @@ export function HomePage() {
             정가로 참여합니다. 참가비는 공간 유지, 프로그램 운영, 창작자
             활동을 위한 비용으로 다시 순환됩니다.
           </p>
-        </div>
+        </RevealOnScroll>
 
-        <div className="policy-chip-list" aria-label="참여 가격 정책">
+        <RevealOnScroll ariaLabel="참여 가격 정책" className="policy-chip-list">
           {policyChips.map((chip) => (
             <span className="policy-chip" key={chip}>
               {chip}
             </span>
           ))}
-        </div>
+        </RevealOnScroll>
 
-        <div className="circulation-flow" aria-label="지역 순환 흐름">
-          {circulationSteps.map((step, index) => (
-            <div className="flow-item" key={step}>
-              <span>{step}</span>
-              {index < circulationSteps.length - 1 && (
-                <span className="flow-arrow" aria-hidden="true">
-                  →
-                </span>
-              )}
-            </div>
-          ))}
-        </div>
+        <RevealOnScroll className="circulation-visual-wrap" delay={160}>
+          <CirculationDiagram />
+          <div className="circulation-flow" aria-label="지역 순환 흐름 요약">
+            {circulationSteps.map((step, index) => (
+              <div className="flow-item" key={step}>
+                <span>{step}</span>
+                {index < circulationSteps.length - 1 && (
+                  <span className="flow-arrow" aria-hidden="true">
+                    →
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </RevealOnScroll>
       </section>
 
       <section
@@ -209,7 +227,7 @@ export function HomePage() {
         className="content-section landing-section home-section-anchor"
         id="pilot"
       >
-        <div className="section-heading">
+        <RevealOnScroll className="section-heading">
           <SectionLabel>시범 운영</SectionLabel>
           <h2 id="pilot-title">
             6개월 동안 작게 시작하고,
@@ -222,25 +240,34 @@ export function HomePage() {
             횟수, 참여자 수, 주민 후기, 공간 관리 상태, 재방문율을 기준으로
             확인합니다.
           </p>
-        </div>
+        </RevealOnScroll>
 
         <div className="metric-grid">
-          {pilotMetrics.map((metric) => (
-            <article className="metric-card" key={metric.label}>
+          {pilotMetrics.map((metric, index) => (
+            <RevealOnScroll
+              as="article"
+              className="metric-card"
+              delay={index * 90}
+              key={metric.label}
+            >
               <strong>{metric.value}</strong>
               <span>{metric.label}</span>
-            </article>
+            </RevealOnScroll>
           ))}
         </div>
 
-        <div className="evaluation-panel">
+        <RevealOnScroll delay={160}>
+          <PilotScheduleTable />
+        </RevealOnScroll>
+
+        <RevealOnScroll className="evaluation-panel" delay={220}>
           <h3>확인할 지표</h3>
           <ul>
             {evaluationItems.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
-        </div>
+        </RevealOnScroll>
       </section>
     </div>
   );

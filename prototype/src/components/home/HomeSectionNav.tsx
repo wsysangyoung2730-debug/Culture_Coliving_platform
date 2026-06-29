@@ -20,25 +20,44 @@ export function HomeSectionNav() {
       return undefined;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    let animationFrame = 0;
 
-        if (visibleEntry?.target.id) {
-          setActiveSection(visibleEntry.target.id);
-        }
-      },
+    const updateActiveSection = () => {
+      const referenceLine = window.innerHeight * 0.42;
+      const currentSection =
+        sectionElements
+          .map((section) => ({
+            id: section.id,
+            top: section.getBoundingClientRect().top
+          }))
+          .filter((section) => section.top <= referenceLine)
+          .sort((a, b) => b.top - a.top)[0] ?? sectionElements[0];
+
+      setActiveSection(currentSection.id);
+    };
+
+    const requestActiveUpdate = () => {
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    const observer = new IntersectionObserver(
+      () => requestActiveUpdate(),
       {
-        rootMargin: "-32% 0px -52% 0px",
-        threshold: [0.15, 0.35, 0.6]
+        rootMargin: "-18% 0px -58% 0px",
+        threshold: [0, 0.2, 0.45]
       }
     );
 
     sectionElements.forEach((section) => observer.observe(section));
+    window.addEventListener("scroll", requestActiveUpdate, { passive: true });
+    requestActiveUpdate();
 
-    return () => observer.disconnect();
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", requestActiveUpdate);
+      observer.disconnect();
+    };
   }, []);
 
   const handleSectionClick = (sectionId: string) => {
