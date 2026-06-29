@@ -30,6 +30,37 @@ const initialForm: ProgramForm = {
   agreePrivacy: false
 };
 
+const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
+
+const formatPhoneNumber = (value: string) => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  const first = digits.slice(0, 3);
+  const second = digits.slice(3, 7);
+  const third = digits.slice(7, 11);
+
+  if (digits.length > 7) {
+    return `${first}-${second}-${third}`;
+  }
+
+  if (digits.length > 3) {
+    return `${first}-${second}`;
+  }
+
+  return first;
+};
+
+const RequiredMark = () => (
+  <span aria-hidden="true" className="required-mark">
+    *
+  </span>
+);
+
+const RequiredLabel = ({ children }: { children: string }) => (
+  <span className="required-label-text">
+    {children} <RequiredMark />
+  </span>
+);
+
 export function ProgramApplicationModal({
   program,
   onClose
@@ -77,19 +108,36 @@ export function ProgramApplicationModal({
     updateForm("quantity", Math.min(Math.max(nextQuantity, 1), maxQuantity));
   };
 
-  const isValid =
+  const changeQuantityBy = (amount: number) => {
+    updateForm(
+      "quantity",
+      Math.min(Math.max(form.quantity + amount, 1), maxQuantity)
+    );
+  };
+
+  const hasRequiredFields =
     form.name.trim() &&
     form.contact.trim() &&
     form.quantity >= 1 &&
     form.quantity <= maxQuantity &&
-    form.participantType &&
-    form.agreeRefund &&
-    form.agreePrivacy;
+    form.participantType;
+
+  const hasRequiredAgreements = form.agreeRefund && form.agreePrivacy;
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!isValid) {
+    if (!hasRequiredFields) {
+      setError("필수 정보를 입력하고 모든 동의 항목을 체크해주세요.");
+      return;
+    }
+
+    if (!phoneRegex.test(form.contact)) {
+      setError("연락처는 010-0000-0000 형식으로 입력해주세요.");
+      return;
+    }
+
+    if (!hasRequiredAgreements) {
       setError("필수 정보를 입력하고 모든 동의 항목을 체크해주세요.");
       return;
     }
@@ -151,32 +199,60 @@ export function ProgramApplicationModal({
                 </div>
 
                 <label>
-                  이름
+                  <RequiredLabel>이름</RequiredLabel>
                   <input
+                    aria-required="true"
                     onChange={(event) => updateForm("name", event.target.value)}
                     value={form.name}
                   />
                 </label>
                 <label>
-                  연락처
+                  <RequiredLabel>연락처</RequiredLabel>
                   <input
-                    onChange={(event) => updateForm("contact", event.target.value)}
+                    aria-required="true"
+                    inputMode="numeric"
+                    onChange={(event) =>
+                      updateForm("contact", formatPhoneNumber(event.target.value))
+                    }
+                    placeholder="010-1234-5678"
                     value={form.contact}
                   />
                 </label>
-                <label>
-                  참여 인원
-                  <input
-                    max={maxQuantity}
-                    min={1}
-                    onChange={(event) => handleQuantityChange(event.target.value)}
-                    type="number"
-                    value={form.quantity}
-                  />
-                </label>
+                <div className="quantity-field">
+                  <RequiredLabel>참여 인원</RequiredLabel>
+                  <div className="quantity-stepper" aria-label="참여 인원 선택">
+                    <button
+                      aria-label="참여 인원 줄이기"
+                      disabled={form.quantity <= 1}
+                      onClick={() => changeQuantityBy(-1)}
+                      type="button"
+                    >
+                      -
+                    </button>
+                    <input
+                      aria-label="참여 인원"
+                      aria-required="true"
+                      max={maxQuantity}
+                      min={1}
+                      onChange={(event) => handleQuantityChange(event.target.value)}
+                      type="number"
+                      value={form.quantity}
+                    />
+                    <button
+                      aria-label="참여 인원 늘리기"
+                      disabled={form.quantity >= maxQuantity}
+                      onClick={() => changeQuantityBy(1)}
+                      type="button"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
 
                 <fieldset className="segmented-control">
-                  <legend>참여 유형</legend>
+                  <legend>
+                    참여 유형 <RequiredMark />
+                  </legend>
                   <button
                     className={form.participantType === "resident" ? "segment-active" : ""}
                     onClick={() => updateForm("participantType", "resident")}
@@ -211,7 +287,9 @@ export function ProgramApplicationModal({
                       onChange={(event) => updateForm("agreeRefund", event.target.checked)}
                       type="checkbox"
                     />
-                    환불 정책에 동의합니다.
+                    <span className="agreement-label-text">
+                      환불 정책에 동의합니다. <RequiredMark />
+                    </span>
                   </label>
                   <label>
                     <input
@@ -219,7 +297,9 @@ export function ProgramApplicationModal({
                       onChange={(event) => updateForm("agreePrivacy", event.target.checked)}
                       type="checkbox"
                     />
-                    개인정보 수집 및 이용에 동의합니다.
+                    <span className="agreement-label-text">
+                      개인정보 수집 및 이용에 동의합니다. <RequiredMark />
+                    </span>
                   </label>
                 </fieldset>
 

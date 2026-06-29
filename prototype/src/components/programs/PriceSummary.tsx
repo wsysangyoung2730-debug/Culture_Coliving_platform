@@ -1,4 +1,5 @@
 import type { Program } from "../../data/programs";
+import { formatPrice } from "./price";
 
 type ParticipantType = "resident" | "visitor";
 
@@ -7,8 +8,6 @@ type PriceSummaryProps = {
   participantType: ParticipantType;
   quantity: number;
 };
-
-const priceFormatter = new Intl.NumberFormat("ko-KR");
 
 export function PriceSummary({
   program,
@@ -42,14 +41,14 @@ export function PriceSummary({
             {isResident ? (
               <>
                 <span className="original-price">
-                  정가 {priceFormatter.format(program.originalPrice)}원
+                  정가 {formatPrice(program.originalPrice)}
                 </span>
-                <strong>주민 할인가 {priceFormatter.format(program.residentPrice)}원</strong>
+                <strong>주민 할인가 {formatPrice(program.residentPrice)}</strong>
                 <span>{program.discountRate}% 할인</span>
               </>
             ) : (
               <>
-                <strong>정가 {priceFormatter.format(program.originalPrice)}원</strong>
+                <strong>정가 {formatPrice(program.originalPrice)}</strong>
                 <span>할인 없음</span>
               </>
             )}
@@ -57,7 +56,7 @@ export function PriceSummary({
         </div>
         <div className="summary-total">
           <dt>총 결제 금액</dt>
-          <dd>{priceFormatter.format(totalPrice)}원</dd>
+          <dd>{formatPrice(totalPrice)}</dd>
         </div>
       </dl>
     </aside>

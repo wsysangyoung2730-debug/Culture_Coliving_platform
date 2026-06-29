@@ -1,10 +1,9 @@
 import type { Program } from "../../data/programs";
+import { formatPrice } from "./price";
 
 type ProgramPosterSliderProps = {
   programs: Program[];
 };
-
-const priceFormatter = new Intl.NumberFormat("ko-KR");
 
 export function ProgramPosterSlider({ programs }: ProgramPosterSliderProps) {
   const repeatedPrograms = [...programs, ...programs];
@@ -13,7 +12,7 @@ export function ProgramPosterSlider({ programs }: ProgramPosterSliderProps) {
     <section className="program-slider-section" aria-labelledby="program-slider-title">
       <div className="section-heading">
         <span className="section-label">진행 예정 프로그램</span>
-        <h2 id="program-slider-title">이번 달 동네 문화 포스터</h2>
+        <h2 id="program-slider-title">이번달 문화 프로그램</h2>
       </div>
       <div className="poster-marquee" aria-label="프로그램 포스터 슬라이드">
         <div className="poster-track">
@@ -26,7 +25,7 @@ export function ProgramPosterSlider({ programs }: ProgramPosterSliderProps) {
                 <span>{program.date}</span>
                 <span>{program.area}</span>
               </div>
-              <strong>주민 {priceFormatter.format(program.residentPrice)}원</strong>
+              <strong>주민 {formatPrice(program.residentPrice)}</strong>
             </article>
           ))}
         </div>

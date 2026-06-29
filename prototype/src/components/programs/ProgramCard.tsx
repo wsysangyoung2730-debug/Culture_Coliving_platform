@@ -1,12 +1,11 @@
 import { PlaceholderImage } from "../common/PlaceholderImage";
 import type { Program } from "../../data/programs";
+import { formatPrice } from "./price";
 
 type ProgramCardProps = {
   program: Program;
   onApply: (program: Program) => void;
 };
-
-const priceFormatter = new Intl.NumberFormat("ko-KR");
 
 export function ProgramCard({ program, onApply }: ProgramCardProps) {
   return (
@@ -38,9 +37,9 @@ export function ProgramCard({ program, onApply }: ProgramCardProps) {
         <div className="program-price-row">
           <div>
             <span className="original-price">
-              정가 {priceFormatter.format(program.originalPrice)}원
+              정가 {formatPrice(program.originalPrice)}
             </span>
-            <strong>주민 {priceFormatter.format(program.residentPrice)}원</strong>
+            <strong>주민 {formatPrice(program.residentPrice)}</strong>
           </div>
           <span className="discount-badge">{program.discountRate}% 할인</span>
         </div>

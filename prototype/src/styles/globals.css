@@ -1484,6 +1484,58 @@ select {
   font-weight: 800;
 }
 
+.quantity-field {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--color-text);
+  font-weight: 800;
+}
+
+.quantity-stepper {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(4rem, 1fr) 3.25rem;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: rgba(245, 240, 232, 0.03);
+}
+
+.quantity-stepper button {
+  display: grid;
+  min-height: 3.25rem;
+  place-items: center;
+  border: 0;
+  color: var(--color-text);
+  background: rgba(13, 23, 32, 0.9);
+  font-size: 1.25rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.quantity-stepper button:hover:not(:disabled),
+.quantity-stepper button:focus-visible {
+  color: var(--color-accent);
+  background: rgba(255, 83, 91, 0.1);
+}
+
+.quantity-stepper button:disabled {
+  color: var(--color-subtle);
+  background: rgba(156, 163, 163, 0.08);
+  cursor: not-allowed;
+}
+
+.quantity-stepper input {
+  min-height: 3.25rem;
+  border-top: 0;
+  border-bottom: 0;
+  border-radius: 0;
+  text-align: center;
+  font-weight: 900;
+}
+
 .program-application-form input,
 .program-application-form textarea {
   width: 100%;
@@ -1532,6 +1584,23 @@ select {
 .agreement-list p {
   margin: 0 0 0.5rem;
   color: var(--color-muted);
+}
+
+.program-application-form .agreement-list {
+  gap: 0.75rem;
+}
+
+.program-application-form .agreement-list label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--color-border);
+  padding: 0.8rem 0.9rem;
+  background: rgba(245, 240, 232, 0.03);
+}
+
+.program-application-form .agreement-list input {
+  flex: 0 0 auto;
 }
 
 .archive-grid {
