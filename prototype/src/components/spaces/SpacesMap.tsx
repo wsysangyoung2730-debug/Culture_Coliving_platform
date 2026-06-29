@@ -16,48 +16,95 @@ const markerPositions = [
 ];
 
 const KAKAO_SDK_ID = "kakao-map-sdk";
+const KAKAO_SDK_LOAD_TIMEOUT_MS = 8000;
 
 type MapLoadStatus = "fallback" | "loading" | "ready" | "error";
+
+let kakaoMapSdkPromise: Promise<void> | null = null;
 
 const getMarkerLabel = (space: Space) =>
   space.status === "마감" ? "마감" : `${space.remainingUnits}개 남음`;
 
-const loadKakaoMapSdk = (appKey: string) =>
-  new Promise<void>((resolve, reject) => {
-    const resolveWhenReady = () => {
+const getMapStatusLabel = (mapStatus: MapLoadStatus) => {
+  if (mapStatus === "ready") {
+    return "Kakao Map 연결됨";
+  }
+
+  if (mapStatus === "loading") {
+    return "지도 불러오는 중";
+  }
+
+  if (mapStatus === "error") {
+    return "Kakao Map 설정 확인 필요";
+  }
+
+  return "지도 키 없음 · 샘플 지도";
+};
+
+const loadKakaoMapSdk = (appKey: string) => {
+  if (window.kakao?.maps) {
+    return new Promise<void>((resolve) => window.kakao?.maps.load(resolve));
+  }
+
+  if (kakaoMapSdkPromise) {
+    return kakaoMapSdkPromise;
+  }
+
+  kakaoMapSdkPromise = new Promise<void>((resolve, reject) => {
+    const existingScript = document.getElementById(KAKAO_SDK_ID) as
+      | HTMLScriptElement
+      | null;
+    let scriptElement = existingScript;
+
+    const timeoutId = window.setTimeout(() => {
+      kakaoMapSdkPromise = null;
+      scriptElement?.remove();
+      reject(new Error("Kakao Maps SDK load timed out."));
+    }, KAKAO_SDK_LOAD_TIMEOUT_MS);
+
+    const clearSdkTimeout = () => window.clearTimeout(timeoutId);
+
+    const handleLoad = () => {
       if (!window.kakao?.maps) {
+        clearSdkTimeout();
+        kakaoMapSdkPromise = null;
         reject(new Error("Kakao Maps SDK is unavailable."));
         return;
       }
 
-      window.kakao.maps.load(resolve);
+      window.kakao.maps.load(() => {
+        clearSdkTimeout();
+        resolve();
+      });
     };
 
-    if (window.kakao?.maps) {
-      resolveWhenReady();
-      return;
-    }
-
-    const existingScript = document.getElementById(KAKAO_SDK_ID) as
-      | HTMLScriptElement
-      | null;
+    const handleError = () => {
+      clearSdkTimeout();
+      kakaoMapSdkPromise = null;
+      scriptElement?.remove();
+      reject(new Error("Kakao Maps SDK failed to load."));
+    };
 
     if (existingScript) {
-      existingScript.addEventListener("load", resolveWhenReady, { once: true });
-      existingScript.addEventListener("error", reject, { once: true });
+      existingScript.addEventListener("load", handleLoad, { once: true });
+      existingScript.addEventListener("error", handleError, { once: true });
       return;
     }
 
     const script = document.createElement("script");
+    scriptElement = script;
     script.id = KAKAO_SDK_ID;
     script.async = true;
     script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(
       appKey
     )}&autoload=false`;
-    script.onload = resolveWhenReady;
-    script.onerror = reject;
+    script.addEventListener("load", handleLoad, { once: true });
+    script.addEventListener("error", handleError, { once: true });
     document.head.appendChild(script);
   });
+
+  return kakaoMapSdkPromise;
+};
 
 export function SpacesMap({
   spaces,
@@ -65,8 +112,8 @@ export function SpacesMap({
   onSelectSpace
 }: SpacesMapProps) {
   const mapElementRef = useRef<HTMLDivElement | null>(null);
-  const markerRefs = useRef<Array<{ setMap(map: unknown): void }>>([]);
-  const kakaoMapKey = import.meta.env.VITE_KAKAO_MAP_APP_KEY;
+  const markerRefs = useRef<Array<KakaoMarker | KakaoCustomOverlay>>([]);
+  const kakaoMapKey = String(import.meta.env.VITE_KAKAO_MAP_APP_KEY ?? "").trim();
   const hasKakaoMapKey = Boolean(kakaoMapKey);
   const [mapStatus, setMapStatus] = useState<MapLoadStatus>(
     hasKakaoMapKey ? "loading" : "fallback"
@@ -90,9 +137,9 @@ export function SpacesMap({
           setMapStatus("ready");
         }
       })
-      .catch(() => {
+      .catch((error: unknown) => {
         if (isMounted) {
-          console.warn("Kakao Map SDK 로드에 실패해 fallback 지도를 표시합니다.");
+          console.warn("Kakao Map SDK 로드에 실패해 fallback 지도를 표시합니다.", error);
           setMapStatus("error");
         }
       });
@@ -158,11 +205,7 @@ export function SpacesMap({
           <p>지도에서 건물별 잔여 공간 수와 마감 상태를 확인하세요.</p>
         </div>
         <span className="map-mode-badge">
-          {mapStatus === "ready"
-            ? "Kakao Map 연결됨"
-            : mapStatus === "loading"
-              ? "지도 불러오는 중"
-              : "지도 키 없음 · 샘플 지도"}
+          {getMapStatusLabel(mapStatus)}
         </span>
       </div>
 
@@ -179,7 +222,9 @@ export function SpacesMap({
           <>
             <div className="map-grid-overlay" />
             <p className="map-fallback-note">
-              지도 API 키가 없거나 로드되지 않아 샘플 지도를 표시합니다.
+              {mapStatus === "error"
+                ? "Kakao Map 서비스 설정을 확인해 주세요. 샘플 지도를 표시합니다."
+                : "지도 API 키가 없어 샘플 지도를 표시합니다."}
             </p>
             {spaces.map((space, index) => {
               const isClosed = space.status === "마감";
@@ -193,7 +238,7 @@ export function SpacesMap({
                   }`}
                   key={space.id}
                   onClick={() => onSelectSpace(space)}
-                  style={markerPositions[index]}
+                  style={markerPositions[index % markerPositions.length]}
                   type="button"
                 >
                   <strong>{space.area}</strong>
