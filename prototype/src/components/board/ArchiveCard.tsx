@@ -1,4 +1,3 @@
-import { PlaceholderImage } from "../common/PlaceholderImage";
 import type { ArchivePost } from "../../data/archivePosts";
 
 type ArchiveCardProps = {
@@ -14,7 +13,7 @@ export function ArchiveCard({ post, onOpen }: ArchiveCardProps) {
       onClick={() => onOpen(post)}
       type="button"
     >
-      <PlaceholderImage label={post.category} variant="archive" />
+      <img className="archive-card-image" src={post.thumbnailImage} alt={post.thumbnailAlt} />
       <div className="archive-card-body">
         <div className="card-topline">
           <span>{post.category}</span>

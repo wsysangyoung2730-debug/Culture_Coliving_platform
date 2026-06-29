@@ -79,8 +79,8 @@ export function BoardPage() {
       <section className="content-section">
         <div className="section-heading">
           <SectionLabel>아카이브</SectionLabel>
-          <h2>공간에 남은 문화 활동 기록</h2>
-          <p>주민 후기와 댓글을 통해 프로그램의 흔적을 이어갑니다.</p>
+          <h2>동네 문화 기록</h2>
+          <p>지난 프로그램의 사진, 후기, 댓글을 한곳에서 확인하세요.</p>
         </div>
         <div className="archive-grid">
           {visiblePosts.map((post) => (

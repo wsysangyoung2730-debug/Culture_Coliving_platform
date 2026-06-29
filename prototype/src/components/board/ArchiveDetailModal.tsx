@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { PlaceholderImage } from "../common/PlaceholderImage";
 import { CommentForm } from "./CommentForm";
 import { CommentList } from "./CommentList";
 import type { ArchiveComment, ArchivePost } from "../../data/archivePosts";
@@ -59,7 +58,7 @@ export function ArchiveDetailModal({
 
         <div className="archive-detail-layout">
           <div className="archive-detail-media">
-            <PlaceholderImage label={post.thumbnailPrompt} variant="archive" />
+            <img src={post.thumbnailImage} alt={post.thumbnailAlt} />
           </div>
 
           <div className="archive-detail-content">

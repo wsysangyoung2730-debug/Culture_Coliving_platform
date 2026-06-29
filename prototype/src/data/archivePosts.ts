@@ -1,3 +1,11 @@
+import beommulPostcardClassImage from "../assets/board/archive-beommul-postcard-class.png";
+import jisanGuitarConcertImage from "../assets/board/archive-jisan-guitar-concert.png";
+import manchonPhotoExhibitImage from "../assets/board/archive-manchon-photo-exhibit.png";
+import padongHealthcareDayImage from "../assets/board/archive-padong-healthcare-day.png";
+import sijiUpcyclingClassImage from "../assets/board/archive-siji-upcycling-class.png";
+import sinmaeBrandSeminarImage from "../assets/board/archive-sinmae-brand-seminar.png";
+import suseongFilmNightImage from "../assets/board/archive-suseong-film-night.png";
+
 export type ArchiveComment = {
   id: number;
   authorId: string;
@@ -12,6 +20,8 @@ export type ArchivePost = {
   spaceName: string;
   date: string;
   thumbnailPrompt: string;
+  thumbnailImage: string;
+  thumbnailAlt: string;
   review: string;
   comments: ArchiveComment[];
 };
@@ -25,6 +35,8 @@ export const archivePosts: ArchivePost[] = [
     spaceName: "지산 로컬상가 1층",
     date: "2026.06.12",
     thumbnailPrompt: "어두운 소형 상가 안에서 기타 공연을 듣는 주민들",
+    thumbnailImage: jisanGuitarConcertImage,
+    thumbnailAlt: "지산동 로컬상가에서 열린 저녁 기타 공연을 주민들이 감상하는 모습",
     review: "작은 공간이라 연주자와 관객의 거리가 가까웠고, 동네 안에서 공연을 본다는 점이 새로웠습니다.",
     comments: [
       {
@@ -47,6 +59,8 @@ export const archivePosts: ArchivePost[] = [
     spaceName: "범물 생활문화 점포",
     date: "2026.06.15",
     thumbnailPrompt: "테이블에 둘러앉아 그림 엽서를 만드는 주민들",
+    thumbnailImage: beommulPostcardClassImage,
+    thumbnailAlt: "범물동 생활문화 점포에서 주민들이 그림 엽서를 만드는 모습",
     review: "처음 만난 이웃과 함께 그림을 그리며 자연스럽게 이야기를 나눌 수 있었습니다.",
     comments: [
       {
@@ -69,6 +83,8 @@ export const archivePosts: ArchivePost[] = [
     spaceName: "파동 커뮤니티 상가",
     date: "2026.06.20",
     thumbnailPrompt: "주민이 태블릿으로 헬스케어 앱을 체험하는 장면",
+    thumbnailImage: padongHealthcareDayImage,
+    thumbnailAlt: "파동 커뮤니티 상가에서 주민들이 태블릿으로 헬스케어 서비스를 체험하는 모습",
     review: "앱 사용법을 직접 배워볼 수 있어서 디지털 서비스에 대한 부담이 줄었습니다.",
     comments: [
       {
@@ -91,6 +107,8 @@ export const archivePosts: ArchivePost[] = [
     spaceName: "만촌 크리에이터 스팟",
     date: "2026.06.22",
     thumbnailPrompt: "동네 사진이 벽에 걸린 작은 결과 전시",
+    thumbnailImage: manchonPhotoExhibitImage,
+    thumbnailAlt: "만촌동 크리에이터 스팟에서 주민들이 동네 사진 결과전을 둘러보는 모습",
     review: "익숙한 골목을 다른 사람의 시선으로 보니 동네가 새롭게 느껴졌습니다.",
     comments: [
       {
@@ -113,6 +131,8 @@ export const archivePosts: ArchivePost[] = [
     spaceName: "신매 팝업 스튜디오",
     date: "2026.06.27",
     thumbnailPrompt: "작은 세미나 공간에서 로컬 브랜드 강의를 듣는 주민들",
+    thumbnailImage: sinmaeBrandSeminarImage,
+    thumbnailAlt: "신매동 팝업 스튜디오에서 주민들이 로컬 브랜드 세미나를 듣는 모습",
     review: "동네에서 시작할 수 있는 작은 브랜드 사례를 들으며 창업 아이디어를 구체화할 수 있었습니다.",
     comments: [
       {
@@ -135,6 +155,8 @@ export const archivePosts: ArchivePost[] = [
     spaceName: "시지 생활문화 스튜디오",
     date: "2026.06.29",
     thumbnailPrompt: "가족이 함께 재활용 재료로 작품을 만드는 장면",
+    thumbnailImage: sijiUpcyclingClassImage,
+    thumbnailAlt: "시지동 생활문화 스튜디오에서 가족이 재활용 재료로 작품을 만드는 모습",
     review: "아이와 함께 만들면서 환경 이야기도 나눌 수 있어 주말 프로그램으로 만족스러웠습니다.",
     comments: [
       {
@@ -157,6 +179,8 @@ export const archivePosts: ArchivePost[] = [
     spaceName: "수성 커뮤니티 라운지",
     date: "2026.07.01",
     thumbnailPrompt: "작은 상가 벽면에 동네 기록 영상을 상영하는 밤",
+    thumbnailImage: suseongFilmNightImage,
+    thumbnailAlt: "수성동 커뮤니티 라운지에서 주민들이 동네 기록 영상을 감상하는 모습",
     review: "동네의 오래된 사진과 짧은 영상을 함께 보며 이웃과 자연스럽게 추억을 나눌 수 있었습니다.",
     comments: [
       {

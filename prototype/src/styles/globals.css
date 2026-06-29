@@ -1823,6 +1823,14 @@ select {
   outline-offset: 3px;
 }
 
+.archive-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--color-surface-strong);
+}
+
 .archive-card-body {
   display: grid;
   gap: 1rem;
@@ -1888,8 +1896,15 @@ select {
   margin-top: 1.25rem;
 }
 
-.archive-detail-media .placeholder-image {
+.archive-detail-media img {
+  display: block;
+  width: 100%;
   min-height: 25rem;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface-strong);
 }
 
 .archive-detail-content {
