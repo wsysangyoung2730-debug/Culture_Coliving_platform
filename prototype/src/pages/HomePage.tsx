@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SectionLabel } from "../components/common/SectionLabel";
+import { HomeSectionNav } from "../components/home/HomeSectionNav";
 
 const problemCards = [
   {
@@ -63,8 +64,9 @@ const evaluationItems = [
 
 export function HomePage() {
   return (
-    <div className="page-stack">
-      <section className="hero-section home-hero">
+    <div className="page-stack home-page">
+      <HomeSectionNav />
+      <section className="hero-section home-hero home-section-anchor" id="hero">
         <div className="hero-copy">
           <SectionLabel>CULTURE KEEPER</SectionLabel>
           <h1>
@@ -98,7 +100,11 @@ export function HomePage() {
         </aside>
       </section>
 
-      <section className="content-section landing-section" aria-labelledby="problem-title">
+      <section
+        aria-labelledby="problem-title"
+        className="content-section landing-section home-section-anchor"
+        id="problem"
+      >
         <div className="section-heading">
           <SectionLabel>문제 정의</SectionLabel>
           <h2 id="problem-title">
@@ -124,7 +130,11 @@ export function HomePage() {
         </p>
       </section>
 
-      <section className="content-section landing-section" aria-labelledby="solution-title">
+      <section
+        aria-labelledby="solution-title"
+        className="content-section landing-section home-section-anchor"
+        id="solution"
+      >
         <div className="section-heading">
           <SectionLabel>해결 구조</SectionLabel>
           <h2 id="solution-title">
@@ -155,7 +165,11 @@ export function HomePage() {
         </p>
       </section>
 
-      <section className="content-section landing-section" aria-labelledby="circulation-title">
+      <section
+        aria-labelledby="circulation-title"
+        className="content-section landing-section home-section-anchor"
+        id="circulation"
+      >
         <div className="section-heading">
           <SectionLabel>순환 모델</SectionLabel>
           <h2 id="circulation-title">
@@ -190,7 +204,11 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="content-section landing-section" aria-labelledby="pilot-title">
+      <section
+        aria-labelledby="pilot-title"
+        className="content-section landing-section home-section-anchor"
+        id="pilot"
+      >
         <div className="section-heading">
           <SectionLabel>시범 운영</SectionLabel>
           <h2 id="pilot-title">
