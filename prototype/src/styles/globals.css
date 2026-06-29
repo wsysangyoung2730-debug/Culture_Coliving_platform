@@ -1493,16 +1493,18 @@ select {
 
 .quantity-stepper {
   display: grid;
-  grid-template-columns: 3.25rem minmax(4rem, 1fr) 3.25rem;
+  grid-template-columns: 64px minmax(72px, 1fr) 64px;
   align-items: center;
   overflow: hidden;
   border: 1px solid var(--color-border);
+  border-radius: 0;
   background: rgba(245, 240, 232, 0.03);
 }
 
 .quantity-stepper button {
   display: grid;
-  min-height: 3.25rem;
+  width: 64px;
+  min-height: 60px;
   place-items: center;
   border: 0;
   color: var(--color-text);
@@ -1527,12 +1529,16 @@ select {
   cursor: not-allowed;
 }
 
-.quantity-stepper input {
-  min-height: 3.25rem;
-  border-top: 0;
-  border-bottom: 0;
-  border-radius: 0;
+.quantity-value {
+  display: grid;
+  min-height: 60px;
+  place-items: center;
+  border-right: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+  color: var(--color-text);
+  background: rgba(5, 13, 20, 0.5);
   text-align: center;
+  font-size: 1.05rem;
   font-weight: 900;
 }
 
@@ -1586,21 +1592,39 @@ select {
   color: var(--color-muted);
 }
 
-.program-application-form .agreement-list {
+.program-agreement-group {
+  display: grid;
   gap: 0.75rem;
+  min-width: 0;
 }
 
-.program-application-form .agreement-list label {
+.program-application-form .program-agreement-row {
   display: flex;
-  align-items: center;
+  width: 100%;
+  min-width: 0;
+  align-items: flex-start;
   gap: 0.75rem;
   border: 1px solid var(--color-border);
   padding: 0.8rem 0.9rem;
   background: rgba(245, 240, 232, 0.03);
+  cursor: pointer;
 }
 
-.program-application-form .agreement-list input {
-  flex: 0 0 auto;
+.program-application-form .program-agreement-row input {
+  flex: 0 0 1rem;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.2rem;
+}
+
+.program-agreement-text {
+  display: inline;
+  min-width: 0;
+  color: var(--color-muted);
+  line-height: 1.5;
+  overflow-wrap: normal;
+  white-space: normal;
+  word-break: keep-all;
 }
 
 .archive-grid {

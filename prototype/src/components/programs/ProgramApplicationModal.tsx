@@ -97,17 +97,6 @@ export function ProgramApplicationModal({
     setForm((current) => ({ ...current, [field]: value }));
   };
 
-  const handleQuantityChange = (value: string) => {
-    const nextQuantity = Number(value);
-
-    if (Number.isNaN(nextQuantity)) {
-      updateForm("quantity", 1);
-      return;
-    }
-
-    updateForm("quantity", Math.min(Math.max(nextQuantity, 1), maxQuantity));
-  };
-
   const changeQuantityBy = (amount: number) => {
     updateForm(
       "quantity",
@@ -229,15 +218,14 @@ export function ProgramApplicationModal({
                     >
                       -
                     </button>
-                    <input
-                      aria-label="참여 인원"
-                      aria-required="true"
-                      max={maxQuantity}
-                      min={1}
-                      onChange={(event) => handleQuantityChange(event.target.value)}
-                      type="number"
-                      value={form.quantity}
-                    />
+                    <div
+                      aria-live="polite"
+                      aria-label={`현재 참여 인원 ${form.quantity}명`}
+                      className="quantity-value"
+                      role="status"
+                    >
+                      {form.quantity}
+                    </div>
                     <button
                       aria-label="참여 인원 늘리기"
                       disabled={form.quantity >= maxQuantity}
@@ -278,26 +266,26 @@ export function ProgramApplicationModal({
                   />
                 </label>
 
-                <fieldset className="agreement-list">
+                <fieldset className="agreement-list program-agreement-group">
                   <legend>필수 동의</legend>
                   <p>{program.refundPolicy}</p>
-                  <label>
+                  <label className="program-agreement-row">
                     <input
                       checked={form.agreeRefund}
                       onChange={(event) => updateForm("agreeRefund", event.target.checked)}
                       type="checkbox"
                     />
-                    <span className="agreement-label-text">
+                    <span className="program-agreement-text">
                       환불 정책에 동의합니다. <RequiredMark />
                     </span>
                   </label>
-                  <label>
+                  <label className="program-agreement-row">
                     <input
                       checked={form.agreePrivacy}
                       onChange={(event) => updateForm("agreePrivacy", event.target.checked)}
                       type="checkbox"
                     />
-                    <span className="agreement-label-text">
+                    <span className="program-agreement-text">
                       개인정보 수집 및 이용에 동의합니다. <RequiredMark />
                     </span>
                   </label>
