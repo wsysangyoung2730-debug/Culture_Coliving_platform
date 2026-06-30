@@ -5,7 +5,14 @@ declare global {
   };
 
   type KakaoMap = {
+    getLevel(): number;
     setCenter(position: KakaoLatLng): void;
+    setBounds(bounds: KakaoLatLngBounds): void;
+    setLevel(level: number): void;
+  };
+
+  type KakaoLatLngBounds = {
+    extend(position: KakaoLatLng): void;
   };
 
   type KakaoMarker = {
@@ -22,6 +29,7 @@ declare global {
       container: HTMLElement,
       options: { center: KakaoLatLng; level: number }
     ) => KakaoMap;
+    LatLngBounds: new () => KakaoLatLngBounds;
     Marker: new (options: { map: KakaoMap; position: KakaoLatLng }) => KakaoMarker;
     CustomOverlay: new (options: {
       content: HTMLElement;

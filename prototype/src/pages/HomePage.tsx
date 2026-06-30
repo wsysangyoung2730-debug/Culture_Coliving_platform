@@ -136,7 +136,7 @@ export function HomePage() {
           ))}
         </div>
         <RevealOnScroll as="p" className="local-context" delay={360}>
-          수성구 외곽 생활권 예시: 지산동, 범물동, 파동, 만촌동, 고산권 일대
+          수성구 생활권 예시: 지산동, 범물동, 파동, 만촌동, 신매동, 시지동 일대
         </RevealOnScroll>
       </section>
 

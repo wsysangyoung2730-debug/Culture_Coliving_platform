@@ -1,3 +1,28 @@
+import beommulExterior from "../assets/spaces/space-beommul-exterior.png";
+import beommulInterior from "../assets/spaces/space-beommul-interior.png";
+import beommulUsecase from "../assets/spaces/space-beommul-usecase.png";
+import jisanExterior from "../assets/spaces/space-jisan-exterior.png";
+import jisanInterior from "../assets/spaces/space-jisan-interior.png";
+import jisanUsecase from "../assets/spaces/space-jisan-usecase.png";
+import manchonExterior from "../assets/spaces/space-manchon-exterior.png";
+import manchonInterior from "../assets/spaces/space-manchon-interior.png";
+import manchonUsecase from "../assets/spaces/space-manchon-usecase.png";
+import padongExterior from "../assets/spaces/space-padong-exterior.png";
+import padongInterior from "../assets/spaces/space-padong-interior.png";
+import padongUsecase from "../assets/spaces/space-padong-usecase.png";
+import sijiExterior from "../assets/spaces/space-siji-exterior.png";
+import sijiInterior from "../assets/spaces/space-siji-interior.png";
+import sijiUsecase from "../assets/spaces/space-siji-usecase.png";
+import sinmaeExterior from "../assets/spaces/space-sinmae-exterior.png";
+import sinmaeInterior from "../assets/spaces/space-sinmae-interior.png";
+import sinmaeUsecase from "../assets/spaces/space-sinmae-usecase.png";
+
+export type SpaceImage = {
+  src: string;
+  alt: string;
+  label: "외부 전경" | "내부 전체" | "활용 예시";
+};
+
 export type Space = {
   id: number;
   name: string;
@@ -17,6 +42,7 @@ export type Space = {
   facility: string;
   condition: string;
   programExample: string;
+  images: SpaceImage[];
 };
 
 export const spaces: Space[] = [
@@ -39,7 +65,24 @@ export const spaces: Space[] = [
       "주거지와 가까운 1층 빈 상가로, 주민 대상 원데이 클래스나 소규모 전시에 적합한 공간입니다.",
     facility: "기본 조명, 전기 사용 가능, 간단한 테이블 배치 가능",
     condition: "월 1회 주민 대상 문화 프로그램 운영과 기본 시설 관리가 필요합니다.",
-    programExample: "도자기 클래스, 그림 모임, 소규모 전시, 창작 워크숍"
+    programExample: "도자기 클래스, 그림 모임, 소규모 전시, 창작 워크숍",
+    images: [
+      {
+        src: jisanExterior,
+        alt: "지산 로컬상가 1층 외부 전경",
+        label: "외부 전경"
+      },
+      {
+        src: jisanInterior,
+        alt: "지산 로컬상가 1층 내부 전체 사진",
+        label: "내부 전체"
+      },
+      {
+        src: jisanUsecase,
+        alt: "지산 로컬상가 1층 활용 예시 사진",
+        label: "활용 예시"
+      }
+    ]
   },
   {
     id: 2,
@@ -60,7 +103,24 @@ export const spaces: Space[] = [
       "동네 상권 안에 위치한 소형 상가로, 작은 공연과 음악 기반 프로그램 운영에 적합합니다.",
     facility: "방음 보강 필요, 전기 사용 가능, 소규모 관람 좌석 배치 가능",
     condition: "월 1회 주민 대상 공연 또는 음악 프로그램 운영이 필요합니다.",
-    programExample: "동네 작은 콘서트, 악기 체험 클래스, 청소년 음악 워크숍"
+    programExample: "동네 작은 콘서트, 악기 체험 클래스, 청소년 음악 워크숍",
+    images: [
+      {
+        src: beommulExterior,
+        alt: "범물 생활문화 점포 외부 전경",
+        label: "외부 전경"
+      },
+      {
+        src: beommulInterior,
+        alt: "범물 생활문화 점포 내부 전체 사진",
+        label: "내부 전체"
+      },
+      {
+        src: beommulUsecase,
+        alt: "범물 생활문화 점포 활용 예시 사진",
+        label: "활용 예시"
+      }
+    ]
   },
   {
     id: 3,
@@ -81,7 +141,24 @@ export const spaces: Space[] = [
       "비교적 넓은 면적의 상가형 공간으로, 체험 부스와 주민 대상 세미나 운영에 적합합니다.",
     facility: "프로젝터 설치 가능, 테이블형 배치 가능, 간단한 팝업 운영 가능",
     condition: "월 1회 주민 대상 세미나 또는 체험형 프로그램 운영이 필요합니다.",
-    programExample: "헬스케어 앱 체험부스, 로컬 창업 세미나, 디지털 기기 활용 교육"
+    programExample: "헬스케어 앱 체험부스, 로컬 창업 세미나, 디지털 기기 활용 교육",
+    images: [
+      {
+        src: padongExterior,
+        alt: "파동 커뮤니티 상가 외부 전경",
+        label: "외부 전경"
+      },
+      {
+        src: padongInterior,
+        alt: "파동 커뮤니티 상가 내부 전체 사진",
+        label: "내부 전체"
+      },
+      {
+        src: padongUsecase,
+        alt: "파동 커뮤니티 상가 활용 예시 사진",
+        label: "활용 예시"
+      }
+    ]
   },
   {
     id: 4,
@@ -102,15 +179,32 @@ export const spaces: Space[] = [
       "작업실과 전시를 함께 운영할 수 있는 소형 상가 공간입니다. 디자인, 사진, 기획 팀에게 적합합니다.",
     facility: "벽면 전시 가능, 책상 배치 가능, 자연광 일부 유입",
     condition: "월 1회 전시 또는 주민 참여형 디자인 프로그램 운영이 필요합니다.",
-    programExample: "동네 포스터 만들기 클래스, 사진 전시, 브랜드 기획 워크숍"
+    programExample: "동네 포스터 만들기 클래스, 사진 전시, 브랜드 기획 워크숍",
+    images: [
+      {
+        src: manchonExterior,
+        alt: "만촌 크리에이터 스팟 외부 전경",
+        label: "외부 전경"
+      },
+      {
+        src: manchonInterior,
+        alt: "만촌 크리에이터 스팟 내부 전체 사진",
+        label: "내부 전체"
+      },
+      {
+        src: manchonUsecase,
+        alt: "만촌 크리에이터 스팟 활용 예시 사진",
+        label: "활용 예시"
+      }
+    ]
   },
   {
     id: 5,
-    name: "고산권 팝업 스튜디오",
-    area: "고산권",
-    address: "대구 수성구 신매동·고산권 일대",
-    lat: 35.8409,
-    lng: 128.7059,
+    name: "신매 팝업 스튜디오",
+    area: "신매동",
+    address: "대구 수성구 신매동 일대",
+    lat: 35.8398,
+    lng: 128.7045,
     type: "빈 상가",
     size: "약 36㎡",
     floor: "1층",
@@ -118,11 +212,66 @@ export const spaces: Space[] = [
     totalUnits: 3,
     status: "신청 가능",
     monthlyCost: "조건부 감면",
-    recommendedFor: ["팝업", "체험 전시", "교육 프로그램"],
+    recommendedFor: ["팝업", "체험 부스", "교육 프로그램"],
     shortDescription:
-      "유동 인구가 있는 생활권 상가로, 주민 체험 부스와 팝업 프로그램을 운영하기 좋은 공간입니다.",
+      "생활 상권과 가까운 1층 빈 상가로, 주민 체험 부스와 팝업 프로그램 운영에 적합한 공간입니다.",
     facility: "입구 전면 노출, 팝업 부스 설치 가능, 간단한 전시 가능",
     condition: "월 1회 주민 대상 체험 프로그램 운영과 공간 정리 기록 제출이 필요합니다.",
-    programExample: "로컬 브랜드 팝업, 앱 체험 부스, 가족 참여형 만들기 클래스"
+    programExample: "로컬 브랜드 팝업, 앱 체험 부스, 가족 참여형 만들기 클래스",
+    images: [
+      {
+        src: sinmaeExterior,
+        alt: "신매 팝업 스튜디오 외부 전경",
+        label: "외부 전경"
+      },
+      {
+        src: sinmaeInterior,
+        alt: "신매 팝업 스튜디오 내부 전체 사진",
+        label: "내부 전체"
+      },
+      {
+        src: sinmaeUsecase,
+        alt: "신매 팝업 스튜디오 활용 예시 사진",
+        label: "활용 예시"
+      }
+    ]
+  },
+  {
+    id: 6,
+    name: "시지 생활문화 스튜디오",
+    area: "시지동",
+    address: "대구 수성구 시지동 일대",
+    lat: 35.8374,
+    lng: 128.6982,
+    type: "빈 상가",
+    size: "약 30㎡",
+    floor: "2층",
+    remainingUnits: 0,
+    totalUnits: 2,
+    status: "마감",
+    monthlyCost: "저비용 사용",
+    recommendedFor: ["소규모 클래스", "전시", "커뮤니티 모임"],
+    shortDescription:
+      "주거 생활권 안에 위치한 소형 상가 공간으로, 작은 클래스와 동네 커뮤니티 프로그램에 적합합니다.",
+    facility: "테이블 배치 가능, 벽면 전시 가능, 소규모 모임 운영 가능",
+    condition: "월 1회 주민 대상 문화 프로그램 운영과 기본 시설 관리가 필요합니다.",
+    programExample: "동네 독서 모임, 사진 전시, 생활 공예 클래스",
+    images: [
+      {
+        src: sijiExterior,
+        alt: "시지 생활문화 스튜디오 외부 전경",
+        label: "외부 전경"
+      },
+      {
+        src: sijiInterior,
+        alt: "시지 생활문화 스튜디오 내부 전체 사진",
+        label: "내부 전체"
+      },
+      {
+        src: sijiUsecase,
+        alt: "시지 생활문화 스튜디오 활용 예시 사진",
+        label: "활용 예시"
+      }
+    ]
   }
 ];

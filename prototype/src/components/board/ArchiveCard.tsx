@@ -1,4 +1,3 @@
-import { PlaceholderImage } from "../common/PlaceholderImage";
 import type { ArchivePost } from "../../data/archivePosts";
 
 type ArchiveCardProps = {
@@ -8,8 +7,13 @@ type ArchiveCardProps = {
 
 export function ArchiveCard({ post, onOpen }: ArchiveCardProps) {
   return (
-    <article className="archive-board-card">
-      <PlaceholderImage label={post.category} variant="archive" />
+    <button
+      aria-label={`${post.title} 기록 보기`}
+      className="archive-board-card"
+      onClick={() => onOpen(post)}
+      type="button"
+    >
+      <img className="archive-card-image" src={post.thumbnailImage} alt={post.thumbnailAlt} />
       <div className="archive-card-body">
         <div className="card-topline">
           <span>{post.category}</span>
@@ -27,10 +31,7 @@ export function ArchiveCard({ post, onOpen }: ArchiveCardProps) {
             <dd>{post.spaceName}</dd>
           </div>
         </dl>
-        <button className="button button-secondary archive-open-button" onClick={() => onOpen(post)} type="button">
-          기록 보기
-        </button>
       </div>
-    </article>
+    </button>
   );
 }

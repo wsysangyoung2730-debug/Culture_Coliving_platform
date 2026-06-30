@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" role="img" aria-labelledby="title desc">
+  <title id="title">로컬 브랜드 시작 세미나 포스터</title>
+  <desc id="desc">동네 상점 라벨과 브랜드 무드보드에서 착안한 신매동 로컬 브랜드 세미나 포스터</desc>
+  <defs>
+    <filter id="paper">
+      <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="3" seed="52" />
+      <feColorMatrix type="saturate" values="0" />
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.12" />
+      </feComponentTransfer>
+    </filter>
+    <pattern id="dot" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="2" fill="#194d74" opacity="0.32" />
+    </pattern>
+  </defs>
+  <rect width="1000" height="1250" fill="#f8f0d8" />
+  <rect width="1000" height="1250" fill="url(#dot)" />
+  <rect width="1000" height="1250" filter="url(#paper)" />
+
+  <path d="M0 0h1000v262c-120 65-244 68-372 8S359 181 0 300Z" fill="#b9e871" />
+  <path d="M658 86l210 70-70 210-210-70Z" fill="#ff684f" />
+  <circle cx="778" cy="236" r="88" fill="#2d6cdf" />
+  <rect x="92" y="118" width="310" height="148" rx="22" fill="#194d74" />
+  <text x="122" y="176" fill="#f8f0d8" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="27" font-weight="900" letter-spacing="5">LOCAL BRAND</text>
+  <text x="122" y="226" fill="#b9e871" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="38" font-weight="900">START KIT</text>
+
+  <g transform="translate(88 395)">
+    <rect x="0" y="0" width="824" height="238" rx="18" fill="#ffffff" stroke="#194d74" stroke-width="6" />
+    <rect x="34" y="36" width="168" height="62" rx="31" fill="#ff684f" />
+    <text x="56" y="79" fill="#1a2730" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="28" font-weight="900">동네 재료</text>
+    <rect x="236" y="36" width="168" height="62" rx="31" fill="#b9e871" />
+    <text x="258" y="79" fill="#1a2730" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="28" font-weight="900">이름 짓기</text>
+    <rect x="438" y="36" width="168" height="62" rx="31" fill="#64d7c0" />
+    <text x="460" y="79" fill="#1a2730" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="28" font-weight="900">첫 고객</text>
+    <path d="M36 166h752" stroke="#194d74" stroke-width="5" stroke-dasharray="10 14" />
+  </g>
+
+  <text x="88" y="735" fill="#194d74" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="92" font-weight="900">로컬 브랜드</text>
+  <text x="88" y="838" fill="#194d74" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="92" font-weight="900">시작 세미나</text>
+  <text x="90" y="902" fill="#1a2730" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="34" font-weight="800">지역 소재와 관심사를 브랜드로 엮는 입문 수업</text>
+
+  <rect x="88" y="970" width="824" height="4" fill="#194d74" opacity="0.75" />
+  <text x="88" y="1038" fill="#194d74" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="42" font-weight="900">신매 팝업 스튜디오</text>
+  <text x="88" y="1107" fill="#194d74" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="52" font-weight="900">2026.07.20 15:00</text>
+  <text x="88" y="1178" fill="#ff684f" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="46" font-weight="900">주민 8,000원</text>
+  <text x="632" y="1178" fill="#194d74" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="30" font-weight="800">브랜드 기획팀 서클</text>
+</svg>
