@@ -26,6 +26,22 @@ let kakaoMapSdkPromise: Promise<void> | null = null;
 const getMarkerLabel = (space: Space) =>
   space.status === "마감" ? "마감" : `${space.remainingUnits}개 남음`;
 
+const getMapStatusLabel = (mapStatus: MapLoadStatus) => {
+  if (mapStatus === "ready") {
+    return "Kakao Map 연결됨";
+  }
+
+  if (mapStatus === "loading") {
+    return "지도 불러오는 중";
+  }
+
+  if (mapStatus === "error") {
+    return "Kakao Map 설정 확인 필요";
+  }
+
+  return "지도 키 없음 · 샘플 지도";
+};
+
 const loadKakaoMapSdk = (appKey: string) => {
   if (window.kakao?.maps) {
     return new Promise<void>((resolve) => window.kakao?.maps.load(resolve));
@@ -168,12 +184,18 @@ export function SpacesMap({
     markerRefs.current = [];
 
     const fallbackCenterSpace = spaces[0];
+
+    if (!fallbackCenterSpace) {
+      return undefined;
+    }
+
     const map =
       mapRef.current ??
       new kakao.maps.Map(mapElementRef.current, {
         center: new kakao.maps.LatLng(fallbackCenterSpace.lat, fallbackCenterSpace.lng),
         level: 7
       });
+
     mapRef.current = map;
 
     const bounds = new kakao.maps.LatLngBounds();
@@ -181,7 +203,9 @@ export function SpacesMap({
     spaces.forEach((space) => {
       const position = new kakao.maps.LatLng(space.lat, space.lng);
       const marker = new kakao.maps.Marker({ map, position });
+
       bounds.extend(position);
+
       const overlayElement = document.createElement("button");
       overlayElement.type = "button";
       overlayElement.className = `kakao-space-marker ${
@@ -226,6 +250,8 @@ export function SpacesMap({
           <h2 id="spaces-map-title">지도에서 공간 현황 보기</h2>
           <p>지도에서 건물별 잔여 공간 수와 마감 상태를 확인하세요.</p>
         </div>
+
+        <span className="map-mode-badge">{getMapStatusLabel(mapStatus)}</span>
       </div>
 
       <div className="spaces-map" aria-label="수성구 빈 상가 위치 지도">
@@ -238,6 +264,7 @@ export function SpacesMap({
           >
             +
           </button>
+
           <button
             aria-label="지도 축소"
             disabled={shouldDisableControls}
@@ -246,6 +273,7 @@ export function SpacesMap({
           >
             -
           </button>
+
           <button
             aria-label="지도 초기화"
             disabled={shouldDisableControls}
@@ -255,22 +283,27 @@ export function SpacesMap({
             ↺ 초기화
           </button>
         </div>
+
         {mapStatus === "loading" && (
           <div className="map-loading-panel">Kakao Map을 불러오는 중입니다.</div>
         )}
+
         <div
           aria-hidden={shouldShowFallback}
           className={shouldShowFallback ? "kakao-map-canvas is-hidden" : "kakao-map-canvas"}
           ref={mapElementRef}
         />
+
         {shouldShowFallback && (
           <>
             <div className="map-grid-overlay" />
+
             <p className="map-fallback-note">
               {mapStatus === "error"
                 ? "Kakao Map 서비스 설정을 확인해 주세요. 샘플 지도를 표시합니다."
                 : "지도 API 키가 없어 샘플 지도를 표시합니다."}
             </p>
+
             {spaces.map((space, index) => {
               const isClosed = space.status === "마감";
               const isSelected = space.id === selectedSpaceId;
@@ -297,3 +330,61 @@ export function SpacesMap({
     </section>
   );
 }
+
+declare global {
+  type KakaoLatLng = {
+    getLat(): number;
+    getLng(): number;
+  };
+
+  type KakaoMap = {
+    getLevel(): number;
+    setCenter(position: KakaoLatLng): void;
+    setBounds(bounds: KakaoLatLngBounds): void;
+    setLevel(level: number): void;
+  };
+
+  type KakaoLatLngBounds = {
+    extend(position: KakaoLatLng): void;
+  };
+
+  type KakaoMarker = {
+    setMap(map: KakaoMap | null): void;
+  };
+
+  type KakaoCustomOverlay = {
+    setMap(map: KakaoMap | null): void;
+  };
+
+  type KakaoMaps = {
+    LatLng: new (lat: number, lng: number) => KakaoLatLng;
+    Map: new (
+      container: HTMLElement,
+      options: { center: KakaoLatLng; level: number }
+    ) => KakaoMap;
+    LatLngBounds: new () => KakaoLatLngBounds;
+    Marker: new (options: { map: KakaoMap; position: KakaoLatLng }) => KakaoMarker;
+    CustomOverlay: new (options: {
+      content: HTMLElement;
+      map: KakaoMap;
+      position: KakaoLatLng;
+      yAnchor?: number;
+    }) => KakaoCustomOverlay;
+    event: {
+      addListener(
+        target: KakaoMarker | KakaoCustomOverlay,
+        type: string,
+        handler: () => void
+      ): void;
+    };
+    load(callback: () => void): void;
+  };
+
+  interface Window {
+    kakao?: {
+      maps: KakaoMaps;
+    };
+  }
+}
+
+export {};
