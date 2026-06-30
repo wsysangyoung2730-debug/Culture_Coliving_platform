@@ -1,6 +1,6 @@
+import type { CSSProperties } from "react";
 import { RevealOnScroll } from "../components/common/RevealOnScroll";
 import { SectionLabel } from "../components/common/SectionLabel";
-import { CirculationDiagram } from "../components/home/CirculationDiagram";
 import { HomeSectionNav } from "../components/home/HomeSectionNav";
 import { PilotScheduleTable } from "../components/home/PilotScheduleTable";
 import culturekeeperSymbol from "../assets/logos/culturekeeper-symbol.svg";
@@ -42,13 +42,20 @@ const solutionSteps = [
   }
 ];
 
-const policyChips = [
-  "지역 주민: 할인가",
-  "외부 방문객: 정가",
-  "정기 참여자: 월간권 가능"
+const circulationFlowSteps = [
+  "주민 참여",
+  "프로그램 참가비",
+  "공간 유지·관리",
+  "다음 문화 프로그램",
+  "주민 재참여"
 ];
 
-const circulationSteps = ["주민 참여", "프로그램 참가비", "공간 유지", "다음 문화 프로그램"];
+const circulationMetrics = [
+  { label: "월 수입", value: "94만 원" },
+  { label: "월 비용", value: "49.4만 원" },
+  { label: "월 잉여", value: "44.6만 원" },
+  { label: "손익분기", value: "8~9명", helper: "회당 참여자" }
+];
 
 const pilotMetrics = [
   { value: "3곳", label: "시범 공간" },
@@ -202,38 +209,61 @@ export function HomePage() {
       >
         <RevealOnScroll className="section-heading">
           <SectionLabel>순환 모델</SectionLabel>
-          <h2 id="circulation-title">
-            프로그램 참가비는 다시 공간과 프로그램으로 돌아갑니다.
-          </h2>
-          <p>
-            지역 주민은 할인된 가격으로 프로그램에 참여하고, 외부 방문객은
-            정가로 참여합니다. 참가비는 공간 유지, 프로그램 운영, 창작자
-            활동을 위한 비용으로 다시 순환됩니다.
-          </p>
+          <h2 id="circulation-title">참가비가 다시 공간을 살립니다</h2>
         </RevealOnScroll>
 
-        <RevealOnScroll ariaLabel="참여 가격 정책" className="policy-chip-list">
-          {policyChips.map((chip) => (
-            <span className="policy-chip" key={chip}>
-              {chip}
-            </span>
-          ))}
-        </RevealOnScroll>
+        <RevealOnScroll
+          ariaLabel="참가비 기반 공간 순환 모델"
+          className="circulation-model-layout"
+          delay={120}
+        >
+          <div className="circulation-flow-panel">
+            <span className="circulation-panel-kicker">Flow</span>
+            <div className="circulation-step-list">
+              {circulationFlowSteps.map((step, index) => (
+                <div
+                  className={`circulation-step-card ${
+                    index === circulationFlowSteps.length - 1 ? "is-highlighted" : ""
+                  }`}
+                  key={step}
+                  style={{ "--step-delay": `${index * 90}ms` } as CSSProperties}
+                >
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{step}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        <RevealOnScroll className="circulation-visual-wrap" delay={160}>
-          <CirculationDiagram />
-          <div className="circulation-flow" aria-label="지역 순환 흐름 요약">
-            {circulationSteps.map((step, index) => (
-              <div className="flow-item" key={step}>
-                <span>{step}</span>
-                {index < circulationSteps.length - 1 && (
-                  <span className="flow-arrow" aria-hidden="true">
-                    →
-                  </span>
-                )}
-              </div>
+          <div className="circulation-metric-grid">
+            {circulationMetrics.map((metric, index) => (
+              <article
+                className="circulation-metric-card"
+                key={metric.label}
+                style={{ "--metric-delay": `${index * 90 + 120}ms` } as CSSProperties}
+              >
+                <span>{metric.label}</span>
+                <strong>{metric.value}</strong>
+                {metric.helper && <small>{metric.helper}</small>}
+              </article>
             ))}
           </div>
+        </RevealOnScroll>
+
+        <RevealOnScroll className="circulation-calculation-box" delay={360}>
+          <div>
+            <p>
+              프로그램 참가비: (주민 10명 × 1만 원 + 외부 5명 × 1.5만 원) × 월 4회 =
+              <strong> 70만 원</strong>
+            </p>
+            <p>
+              유휴 시간 대관: 월 8회 × 3만 원 =<strong> 24만 원</strong>
+            </p>
+            <p>
+              월 수입 합계: 70만 원 + 24만 원 =<strong> 94만 원</strong>
+            </p>
+          </div>
+          <small>※ 위 수치는 시범운영으로 검증할 가정값입니다.</small>
         </RevealOnScroll>
       </section>
 

@@ -2699,6 +2699,180 @@ body {
   gap: 32px;
 }
 
+.circulation-model-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 24px;
+}
+
+.circulation-flow-panel,
+.circulation-metric-card,
+.circulation-calculation-box {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background:
+    radial-gradient(circle at top right, rgba(255, 83, 91, 0.1), transparent 16rem),
+    rgba(13, 23, 32, 0.86);
+}
+
+.circulation-flow-panel {
+  display: grid;
+  gap: 22px;
+  padding: clamp(24px, 3vw, 34px);
+}
+
+.circulation-panel-kicker {
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.circulation-step-list {
+  display: grid;
+  gap: 30px;
+}
+
+.circulation-step-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 16px;
+  min-height: 76px;
+  border: 1px solid rgba(255, 83, 91, 0.32);
+  border-radius: 8px;
+  padding: 18px 20px;
+  background: rgba(7, 16, 24, 0.58);
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 520ms ease,
+    transform 520ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+  transition-delay: var(--step-delay, 0ms);
+}
+
+.circulation-step-card:not(:last-child)::after {
+  position: absolute;
+  left: 50%;
+  bottom: -29px;
+  color: var(--color-accent);
+  content: "↓";
+  font-size: 20px;
+  font-weight: 900;
+  transform: translateX(-50%);
+}
+
+.circulation-step-card span {
+  display: inline-grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid rgba(255, 83, 91, 0.35);
+  border-radius: 999px;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.circulation-step-card strong {
+  color: var(--color-heading);
+  font-size: clamp(19px, 2vw, 24px);
+  letter-spacing: -0.35px;
+}
+
+.circulation-step-card.is-highlighted {
+  border-color: rgba(255, 83, 91, 0.8);
+  background: rgba(255, 83, 91, 0.1);
+}
+
+.circulation-step-card.is-highlighted strong {
+  color: #ffb3b1;
+}
+
+.circulation-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.circulation-metric-card {
+  display: grid;
+  min-height: 160px;
+  align-content: center;
+  gap: 12px;
+  padding: clamp(22px, 3vw, 30px);
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 520ms ease,
+    transform 520ms ease,
+    border-color 180ms ease;
+  transition-delay: var(--metric-delay, 120ms);
+}
+
+.circulation-metric-card span {
+  color: var(--color-muted);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.circulation-metric-card strong {
+  color: var(--color-accent);
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: -1.4px;
+  line-height: 1;
+}
+
+.circulation-metric-card small {
+  color: var(--color-heading);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.circulation-model-layout.is-visible .circulation-step-card,
+.circulation-model-layout.is-visible .circulation-metric-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.circulation-calculation-box {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(22px, 3vw, 30px);
+}
+
+.circulation-calculation-box div {
+  display: grid;
+  gap: 10px;
+}
+
+.circulation-calculation-box p,
+.circulation-calculation-box small {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.circulation-calculation-box strong {
+  color: var(--color-accent);
+  font-weight: 900;
+}
+
+.circulation-calculation-box small {
+  flex: 0 0 240px;
+  text-align: right;
+}
+
 .problem-grid,
 .solution-steps,
 .metric-grid,
@@ -2971,6 +3145,19 @@ body {
     min-height: auto;
   }
 
+  .circulation-model-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .circulation-calculation-box {
+    display: grid;
+  }
+
+  .circulation-calculation-box small {
+    flex-basis: auto;
+    text-align: left;
+  }
+
   .hero-visual {
     min-height: 420px;
   }
@@ -3079,6 +3266,21 @@ body {
     width: 100%;
   }
 
+  .circulation-flow-panel,
+  .circulation-metric-card,
+  .circulation-calculation-box {
+    border-radius: 12px;
+  }
+
+  .circulation-metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .circulation-step-card {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
   .home-section-nav {
     display: none;
   }
@@ -3145,5 +3347,12 @@ body {
 
   .orbit-pulse {
     animation: none;
+  }
+
+  .circulation-step-card,
+  .circulation-metric-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
