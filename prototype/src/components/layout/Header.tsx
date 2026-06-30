@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import culturekeeperWordmark from "../../assets/logos/culturekeeper-wordmark.svg";
 
 const menuItems = [
   { label: "홈", path: "/" },
@@ -12,7 +13,11 @@ export function Header() {
     <header className="site-header">
       <div className="site-header-inner">
         <NavLink className="site-wordmark" to="/">
-          컬처키퍼
+          <img
+            className="site-header-logo"
+            src={culturekeeperWordmark}
+            alt="컬처키퍼"
+          />
         </NavLink>
         <nav className="site-nav" aria-label="주요 메뉴">
           {menuItems.map((item) => (

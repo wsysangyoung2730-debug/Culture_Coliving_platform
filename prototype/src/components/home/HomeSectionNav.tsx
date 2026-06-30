@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const homeSections = [
   { id: "hero", label: "CULTURE KEEPER" },
   { id: "problem", label: "문제 정의" },
-  { id: "solution", label: "해결 구조" },
+  { id: "solution-structure", label: "해결 구조" },
   { id: "circulation", label: "순환 모델" },
   { id: "pilot", label: "시범 운영" }
 ];

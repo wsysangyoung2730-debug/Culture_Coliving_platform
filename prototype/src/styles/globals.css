@@ -2307,12 +2307,21 @@ body {
 }
 
 .site-wordmark {
+  display: inline-flex;
+  align-items: center;
   color: var(--color-wordmark);
   font-size: 32px;
   font-weight: 900;
   letter-spacing: -0.64px;
   line-height: 1.2;
   white-space: nowrap;
+}
+
+.site-header-logo {
+  display: block;
+  width: auto;
+  height: 44px;
+  max-width: 168px;
 }
 
 .site-nav {
@@ -2523,6 +2532,33 @@ body {
   max-width: 672px;
 }
 
+.hero-brand-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.hero-brand-label::before {
+  width: 32px;
+  height: 1px;
+  border-radius: 0;
+  background: var(--color-accent);
+  content: "";
+}
+
+.hero-brand-label img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
 .hero-section h1 {
   color: var(--color-heading);
   font-size: clamp(56px, 7vw, 72px);
@@ -2534,10 +2570,10 @@ body {
 .hero-main-message {
   margin-top: 8px;
   color: var(--color-text);
-  font-size: clamp(20px, 2.3vw, 22px);
+  font-size: clamp(24px, 3vw, 30px);
   font-weight: 700;
   letter-spacing: -0.22px;
-  line-height: 1.45;
+  line-height: 1.38;
 }
 
 .hero-main-message span,
@@ -2877,8 +2913,35 @@ body {
   gap: 32px;
 }
 
+.site-footer-inner button {
+  border: 0;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.site-footer-inner button:hover,
+.site-footer-inner button:focus-visible {
+  color: var(--color-heading);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 5px;
+}
+
 .site-footer-inner span:last-child {
   justify-self: end;
+}
+
+.footer-info-modal {
+  width: min(100%, 560px);
+}
+
+.footer-info-modal-body {
+  margin: 24px 0 0;
+  color: var(--color-muted);
+  font-size: 18px;
+  line-height: 1.75;
 }
 
 @media (max-width: 980px) {
@@ -2969,6 +3032,11 @@ body {
 
   .site-wordmark {
     font-size: 26px;
+  }
+
+  .site-header-logo {
+    height: 36px;
+    max-width: 138px;
   }
 
   .header-cta {

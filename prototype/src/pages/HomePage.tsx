@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
 import { RevealOnScroll } from "../components/common/RevealOnScroll";
 import { SectionLabel } from "../components/common/SectionLabel";
 import { CirculationDiagram } from "../components/home/CirculationDiagram";
 import { HomeSectionNav } from "../components/home/HomeSectionNav";
 import { PilotScheduleTable } from "../components/home/PilotScheduleTable";
+import culturekeeperSymbol from "../assets/logos/culturekeeper-symbol.svg";
 
 const problemCards = [
   {
@@ -68,12 +68,26 @@ const evaluationItems = [
 ];
 
 export function HomePage() {
+  const handleScrollToSolution = () => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    document.getElementById("solution-structure")?.scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "start"
+    });
+  };
+
   return (
     <div className="page-stack home-page">
       <HomeSectionNav />
       <section className="hero-section home-hero home-section-anchor" id="hero">
         <div className="hero-copy">
-          <SectionLabel>CULTURE KEEPER</SectionLabel>
+          <span className="hero-brand-label">
+            <img src={culturekeeperSymbol} alt="" aria-hidden="true" />
+            <span>Culture Co-living Platform</span>
+          </span>
           <h1>
             컬처키퍼
           </h1>
@@ -88,13 +102,14 @@ export function HomePage() {
             주민의 일상은 문화와 가까워집니다.
           </p>
           <div className="hero-actions">
-            <Link className="button button-primary" to="/spaces">
+            <button
+              className="button button-primary"
+              onClick={handleScrollToSolution}
+              type="button"
+            >
               서비스 구조 보기
               <span aria-hidden="true">→</span>
-            </Link>
-            <Link className="button button-secondary" to="/programs">
-              소개 영상 보기
-            </Link>
+            </button>
           </div>
         </div>
 
@@ -143,7 +158,7 @@ export function HomePage() {
       <section
         aria-labelledby="solution-title"
         className="content-section landing-section home-section-anchor"
-        id="solution"
+        id="solution-structure"
       >
         <RevealOnScroll className="section-heading">
           <SectionLabel>해결 구조</SectionLabel>
